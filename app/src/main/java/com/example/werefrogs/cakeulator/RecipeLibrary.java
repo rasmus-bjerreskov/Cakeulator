@@ -14,7 +14,13 @@ public class RecipeLibrary extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_library);
 
-        //ListView lv = findViewById(R.id.lv_Recipes);
-        //lv.setAdapter(new ArrayAdapter<Ingredient>(this, ); //on hold
+        Recipe r1 = new Recipe("Smørrebrød");
+        r1.addIngredient(new Ingredient(1, "slice", "rye bread"));
+
+        RecipeList.getInstance().addRecipe(r1);
+
+        ListView lv = findViewById(R.id.lv_Recipes);
+        lv.setAdapter(new ArrayAdapter<Recipe>
+                (this, android.R.layout.simple_list_item_1, RecipeList.getInstance().getRecipeList()));
     }
 }
