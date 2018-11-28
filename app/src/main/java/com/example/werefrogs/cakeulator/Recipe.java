@@ -24,11 +24,15 @@ public class Recipe {
     }
 
     /**
-     *
+     * returns the arrayList object part of the recipe
      * @return
      */
     public ArrayList<Ingredient> getIngredients() {
         return this.ingredients;
     }
 
+    @Override
+    public String toString() {
+        return this.name;
+    }
 }

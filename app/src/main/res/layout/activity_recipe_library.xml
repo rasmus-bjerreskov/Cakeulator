@@ -7,6 +7,7 @@
     tools:context=".RecipeLibrary">
 
     <ListView
+        android:id="@+id/lv_Recipes"
         android:layout_width="352dp"
         android:layout_height="383dp"
         android:layout_marginStart="16dp"

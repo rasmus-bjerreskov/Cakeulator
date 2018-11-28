@@ -58,4 +58,8 @@ public class Ingredient {
     public void setIngredient(String ingredient) {
         this.ingredient = ingredient;
     }
+
+    public String toString() {
+        return "" + this.amount + " " + this.unit + " " + this.ingredient; //problem: two spaces if no unit ("2  eggs")
+    }
 }
