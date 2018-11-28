@@ -11,13 +11,31 @@ class RecipeList {
     }
 
     private RecipeList() {
-        this.recipes = new ArrayList<>();
+        this.recipes = new ArrayList<Recipe>();
 
     }
+
+    /**
+     * returns array of recipes
+     * @return
+     */
     public ArrayList<Recipe> getRecipeList() {
         return this.recipes;
     }
 
+    /**
+     * add recipe array
+     * @param r
+     */
+    public void addRecipe(Recipe r) {
+        this.recipes.add(r);
+    }
+
+    /**
+     * returns array at index
+     * @param i
+     * @return
+     */
     public Recipe getRecipe(int i) {
         return recipes.get(i);
     }
