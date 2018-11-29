@@ -4,7 +4,7 @@
     <item android:drawable="@color/colorWhite" />
 
     <item>
-        <bitmap android:src="@drawable/Cakeulator_Logo"
+        <bitmap android:src="@drawable/cakeulator_logo"
             android:gravity="center" />
 
     </item>
