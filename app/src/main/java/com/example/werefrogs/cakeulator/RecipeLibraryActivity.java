@@ -1,13 +1,16 @@
 package com.example.werefrogs.cakeulator;
 
 import android.content.Intent;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.ListView;
+import android.widget.ToggleButton;
 
 import java.util.ArrayList;
 
@@ -15,10 +18,25 @@ public class RecipeLibraryActivity extends AppCompatActivity {
     public static final String TAG = "Debug_key";
     public static final String EXTRA = "com.example.wereFrogs.Cakeulator";
 
+    ToggleButton toggleButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_library);
+
+        toggleButton = (ToggleButton) findViewById(R.id.tb_favourite);
+        toggleButton.setChecked(false);
+        toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.favourite_grey));
+        toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked)
+                    toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.favourite_gold));
+                else
+                    toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.favourite_grey));
+            }
+        });
 
         ListView lv = findViewById(R.id.lv_Recipes);
         lv.setAdapter(new ArrayAdapter<Recipe>
@@ -31,6 +49,13 @@ public class RecipeLibraryActivity extends AppCompatActivity {
         RecipeList.getInstance().addRecipe(r1);
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            /**
+             * Clicking recipe in list leads to it's individual page
+             * @param adapterView
+             * @param view
+             * @param i
+             * @param l
+             */
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Log.d(TAG, "onItemClick(" + i + ")");
