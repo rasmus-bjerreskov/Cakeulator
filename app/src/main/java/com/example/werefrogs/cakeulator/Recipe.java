@@ -42,11 +42,17 @@ public class Recipe {
         return this.ingredients;
     }
 
-
+    /**
+     *
+     * @return
+     */
     public String getName() {
         return this.name;
     }
 
+    public int getServings() {
+        return this.servings;
+    }
     @Override
     public String toString() {
         return this.name;
