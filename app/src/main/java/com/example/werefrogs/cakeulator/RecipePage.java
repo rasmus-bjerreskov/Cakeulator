@@ -29,7 +29,7 @@ public class RecipePage extends AppCompatActivity {
         String recipePrint = "";
 
         for (Ingredient j : recipeToPrint.getIngredients()) {
-            recipePrint += j.toString();
+            recipePrint += j.toString() + "\n";
         }
 
         recipeName.setText(RecipeList.getInstance().getRecipe(i).getName());

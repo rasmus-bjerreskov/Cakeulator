@@ -19,12 +19,8 @@ public class RecipeLibraryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_library);
 
-        Recipe r1 = new Recipe("Smørrebrød");
-        r1.addIngredient(new Ingredient(1, "slice", "rye bread"));
-        r1.addIngredient(new Ingredient(2, "slice", "roast beef"));
-        r1.addIngredient(new Ingredient(4, "slice", "cucumber"));
 
-        RecipeList.getInstance().addRecipe(r1);
+
         ListView lv = findViewById(R.id.lv_Recipes);
         lv.setAdapter(new ArrayAdapter<Recipe>
                 (this, android.R.layout.simple_list_item_1,
@@ -32,7 +28,7 @@ public class RecipeLibraryActivity extends AppCompatActivity {
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             /**
-             * Clicking recipe in list leads to it's individual page
+             * Clicking recipe in list leads to its individual page
              * @param adapterView
              * @param view
              * @param i
@@ -47,5 +43,8 @@ public class RecipeLibraryActivity extends AppCompatActivity {
             }
 
         });
+
+
+
     }
 }
