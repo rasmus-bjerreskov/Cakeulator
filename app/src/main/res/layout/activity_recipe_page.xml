@@ -17,6 +17,8 @@
         android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
         android:text="TextView"
+        android:textSize="20sp"
+        android:singleLine="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

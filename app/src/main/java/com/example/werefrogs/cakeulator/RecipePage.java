@@ -10,6 +10,7 @@ import static com.example.werefrogs.cakeulator.RecipeLibraryActivity.EXTRA;
 public class RecipePage extends AppCompatActivity {
     private TextView recipeName, recipeView;
     private EditText servings;
+    private Recipe recipeToPrint;
 
 
     @Override
@@ -24,7 +25,15 @@ public class RecipePage extends AppCompatActivity {
         recipeView = findViewById(R.id.tv_recipe);
         servings = findViewById(R.id.et_amount);
 
+        recipeToPrint = RecipeList.getInstance().getRecipe(i);
+        String recipePrint = "";
+
+        for (Ingredient j : recipeToPrint.getIngredients()) {
+            recipePrint += j.toString() + "\n";
+        }
+
         recipeName.setText(RecipeList.getInstance().getRecipe(i).getName());
+        recipeView.setText(recipePrint);
 
 
     }
