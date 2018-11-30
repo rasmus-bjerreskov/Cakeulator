@@ -1,18 +1,13 @@
 package com.example.werefrogs.cakeulator;
 
 import android.content.Intent;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.CompoundButton;
 import android.widget.ListView;
-import android.widget.ToggleButton;
-
-import java.util.ArrayList;
 
 public class RecipeLibraryActivity extends AppCompatActivity {
     public static final String TAG = "Debug_key";
@@ -24,17 +19,16 @@ public class RecipeLibraryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_library);
 
+        Recipe r1 = new Recipe("Smørrebrød");
+        r1.addIngredient(new Ingredient(1, "slice", "rye bread"));
+        r1.addIngredient(new Ingredient(2, "slice", "roast beef"));
+        r1.addIngredient(new Ingredient(4, "slice", "cucumber"));
 
-
+        RecipeList.getInstance().addRecipe(r1);
         ListView lv = findViewById(R.id.lv_Recipes);
         lv.setAdapter(new ArrayAdapter<Recipe>
                 (this, android.R.layout.simple_list_item_1,
                         RecipeList.getInstance().getRecipeList()));
-
-        Recipe r1 = new Recipe("Smørrebrød");
-        r1.addIngredient(new Ingredient(1, "slice", "rye bread"));
-
-        RecipeList.getInstance().addRecipe(r1);
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             /**
