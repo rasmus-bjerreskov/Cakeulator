@@ -33,6 +33,9 @@ public class Recipe {
     public ArrayList<Ingredient> getIngredients() {
         return this.ingredients;
     }
+    public String getName() {
+        return this.name;
+    }
 
     @Override
     public String toString() {

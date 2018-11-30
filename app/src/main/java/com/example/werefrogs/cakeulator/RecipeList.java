@@ -6,7 +6,7 @@ class RecipeList {
     private static final RecipeList ourInstance = new RecipeList();
     private ArrayList<Recipe> recipes;
 
-    static RecipeList getInstance() {
+    public static RecipeList getInstance() {
         return ourInstance;
     }
 
