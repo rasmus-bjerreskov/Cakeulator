@@ -18,25 +18,13 @@ public class RecipeLibraryActivity extends AppCompatActivity {
     public static final String TAG = "Debug_key";
     public static final String EXTRA = "com.example.wereFrogs.Cakeulator";
 
-    ToggleButton toggleButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_library);
 
-        toggleButton = (ToggleButton) findViewById(R.id.tb_favourite);
-        toggleButton.setChecked(false);
-        toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.favourite_grey));
-        toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked)
-                    toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(),R.drawable.favourite_gold));
-                else
-                    toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.favourite_grey));
-            }
-        });
+
 
         ListView lv = findViewById(R.id.lv_Recipes);
         lv.setAdapter(new ArrayAdapter<Recipe>
