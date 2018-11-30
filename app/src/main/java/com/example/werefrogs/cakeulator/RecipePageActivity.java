@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import static com.example.werefrogs.cakeulator.RecipeLibraryActivity.EXTRA;
 
-public class RecipePage extends AppCompatActivity {
+public class RecipePageActivity extends AppCompatActivity {
     private TextView recipeName, recipeView;
     private EditText servings;
     private Recipe recipeToPrint;
@@ -29,7 +29,7 @@ public class RecipePage extends AppCompatActivity {
         String recipePrint = "";
 
         for (Ingredient j : recipeToPrint.getIngredients()) {
-            recipePrint += j.toString() + "\n";
+            recipePrint += j.getAmount() + j.getStrings() + "\n";
         }
 
         recipeName.setText(RecipeList.getInstance().getRecipe(i).getName());

@@ -21,7 +21,7 @@
         </activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".RecipeLibraryActivity" />
-        <activity android:name=".RecipePage"
+        <activity android:name=".RecipePageActivity"
             android:parentActivityName="RecipeLibraryActivity"></activity>
     </application>
 

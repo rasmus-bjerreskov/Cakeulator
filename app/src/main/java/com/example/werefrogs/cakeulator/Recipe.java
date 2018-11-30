@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Recipe {
     private String name;
+    private int servings;
     private ArrayList<Ingredient> ingredients;
 
     /**
@@ -13,6 +14,13 @@ public class Recipe {
      */
     public Recipe(String name) {
         this.name = name;
+        this.servings = 1;
+        this.ingredients = new ArrayList<Ingredient>();
+    }
+
+    public Recipe(String name, int amout) {
+        this.name = name;
+        this.servings = servings;
         this.ingredients = new ArrayList<Ingredient>();
     }
 

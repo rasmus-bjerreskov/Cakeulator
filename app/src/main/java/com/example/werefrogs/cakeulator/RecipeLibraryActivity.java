@@ -37,7 +37,7 @@ public class RecipeLibraryActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Log.d(TAG, "onItemClick(" + i + ")");
-                Intent nextActivity = new Intent(RecipeLibraryActivity.this, RecipePage.class);
+                Intent nextActivity = new Intent(RecipeLibraryActivity.this, RecipePageActivity.class);
                 nextActivity.putExtra(EXTRA, i);
                 startActivity(nextActivity);
             }
