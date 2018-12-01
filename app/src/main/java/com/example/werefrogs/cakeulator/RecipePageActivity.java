@@ -20,11 +20,12 @@ public class RecipePageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_recipe_page);
         recipeName = findViewById(R.id.tv_recipeName);
         recipeView = findViewById(R.id.tv_recipe);
-        servings = (EditText) findViewById(R.id.et_amount);
+        servings = findViewById(R.id.et_amount);
 
         Bundle b = getIntent().getExtras();
         int i = b.getInt(EXTRA, 0);
 
+        servings.setHint(Integer.toString(RecipeList.getInstance().getRecipe(i).getServings()));
         recipeToPrint = RecipeList.getInstance().getRecipe(i);
         recipeName.setText(RecipeList.getInstance().getRecipe(i).getName());
 
