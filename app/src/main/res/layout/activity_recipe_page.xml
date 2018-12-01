@@ -61,7 +61,6 @@
         android:layout_marginTop="40dp"
         android:ems="10"
         android:inputType="number"
-        android:text="1"
         app:layout_constraintEnd_toStartOf="@+id/tv_servings"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/tv_makes"
