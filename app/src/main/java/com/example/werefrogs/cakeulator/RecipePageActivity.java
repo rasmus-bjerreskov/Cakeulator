@@ -47,7 +47,6 @@ public class RecipePageActivity extends AppCompatActivity {
 
     public void updateUI() {
         int multiplier = Integer.parseInt(servings.getText().toString()) / recipeToPrint.getServings(); // given/default servings
-
         String recipePrint = "";
 
         for (Ingredient j : recipeToPrint.getIngredients()) {
