@@ -43,13 +43,14 @@
         android:layout_marginLeft="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
         android:gravity="center"
         android:text="@string/text_makes"
         android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_recipe"
         app:layout_constraintEnd_toStartOf="@+id/et_amount"
         app:layout_constraintHorizontal_bias="0.764"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="234dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/et_amount"
@@ -69,11 +70,12 @@
         android:layout_height="40dp"
         android:layout_marginEnd="72dp"
         android:layout_marginRight="72dp"
+        android:layout_marginBottom="16dp"
         android:gravity="center"
         android:text="@string/text_servings"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="234dp" />
+        app:layout_constraintBottom_toTopOf="@+id/tv_recipe"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <CheckBox
         android:id="@+id/checkBox"

@@ -15,7 +15,6 @@ public class Recipe {
         this.name = name;
         this.ingredients = new ArrayList<Ingredient>();
     }
-
     /**
      * adds an ingredient object to the array
      *

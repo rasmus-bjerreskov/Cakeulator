@@ -84,7 +84,7 @@
 
     <EditText
         android:id="@+id/et_addAmount"
-        android:layout_width="65dp"
+        android:layout_width="75dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
@@ -97,7 +97,7 @@
 
     <EditText
         android:id="@+id/et_addUnit"
-        android:layout_width="84dp"
+        android:layout_width="76dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
         android:ems="10"
