@@ -23,7 +23,6 @@ public class Recipe {
         this.servings = servings;
         this.ingredients = new ArrayList<Ingredient>();
     }
-
     /**
      * adds an ingredient object to the array
      *
