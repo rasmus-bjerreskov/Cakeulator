@@ -26,7 +26,9 @@ public class RecipeLibraryActivity extends AppCompatActivity {
 
         searchLibrary = (EditText) findViewById(R.id.et_search);
         ListView lv = findViewById(R.id.lv_Recipes);
-
+/**
+ * creates an adapter for the Recipe array
+ */
         adapter = new ArrayAdapter<Recipe>
                 (this, android.R.layout.simple_list_item_1,
                         RecipeList.getInstance().getRecipeList());
@@ -49,10 +51,17 @@ public class RecipeLibraryActivity extends AppCompatActivity {
             }
         });
         searchLibrary.addTextChangedListener(new TextWatcher() {
+            /**
+             * The program listens and responds to changes in the EditText field
+             * @param cs
+             * @param arg1
+             * @param arg2
+             * @param arg3
+             */
 
             @Override
             public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
-                // When user changed the Text
+
                 RecipeLibraryActivity.this.adapter.getFilter().filter(cs);
             }
 
@@ -62,8 +71,11 @@ public class RecipeLibraryActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable arg0) {
-
             }
+            /* makes sure that the sequence of characters in the search field is the same as in the
+            recipe list view
+             */
+
         });
     }
 }

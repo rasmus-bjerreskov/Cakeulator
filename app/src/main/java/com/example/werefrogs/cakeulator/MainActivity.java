@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void buttonPressed_addToLibrary(View v) {
+        //Makes a toast (short popup text) whenever the "Add to Library" button is pressed
         Context context = getApplicationContext();
         CharSequence text = "Recipe added!";
         int duration = Toast.LENGTH_SHORT;

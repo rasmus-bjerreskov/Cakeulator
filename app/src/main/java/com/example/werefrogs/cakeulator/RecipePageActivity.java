@@ -27,10 +27,7 @@ public class RecipePageActivity extends AppCompatActivity {
         recipeView = findViewById(R.id.tv_recipe);
         servings = (EditText) findViewById(R.id.et_amount);
 
-
-
         recipeName.setText(RecipeList.getInstance().getRecipe(i).getName());
-
         servings.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -40,9 +37,6 @@ public class RecipePageActivity extends AppCompatActivity {
             }
         });
         updateUI();
-
-
-
     }
 
     public void updateUI() {
