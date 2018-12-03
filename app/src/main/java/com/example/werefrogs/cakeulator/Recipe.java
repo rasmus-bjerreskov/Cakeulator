@@ -18,7 +18,7 @@ public class Recipe {
         this.ingredients = new ArrayList<Ingredient>();
     }
 
-    public Recipe(String name, int amout) {
+    public Recipe(String name, int amount) {
         this.name = name;
         this.servings = servings;
         this.ingredients = new ArrayList<Ingredient>();

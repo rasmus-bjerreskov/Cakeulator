@@ -7,11 +7,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 
 public class RecipeLibraryActivity extends AppCompatActivity {
     public static final String TAG = "Debug_key";
     public static final String EXTRA = "com.example.wereFrogs.Cakeulator";
+    private EditText searchLibrary;
+    private ListView listLibrary;
 
 
     @Override
@@ -19,7 +22,8 @@ public class RecipeLibraryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_library);
 
-
+        searchLibrary = (EditText) findViewById(R.id.et_search);
+        listLibrary =   (ListView)findViewById(R.id.lv_Recipes);
 
         ListView lv = findViewById(R.id.lv_Recipes);
         lv.setAdapter(new ArrayAdapter<Recipe>
@@ -44,7 +48,6 @@ public class RecipeLibraryActivity extends AppCompatActivity {
 
         });
 
-
-
     }
-}
+    }
+
