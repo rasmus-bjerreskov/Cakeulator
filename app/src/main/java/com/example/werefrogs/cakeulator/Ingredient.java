@@ -16,6 +16,12 @@ public class Ingredient {
         this.ingredient = ingredient;
     }
 
+    public Ingredient(int amount, String ingredient) {
+        this.amount = amount;
+        this.unit = "";
+        this.ingredient = ingredient;
+    }
+
     /**
      * @return
      */

@@ -12,6 +12,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
     }
     public void buttonPressed_toLibrary(View v) {
         Intent intent = new Intent(this, RecipeLibraryActivity.class);
