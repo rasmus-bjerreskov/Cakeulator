@@ -3,6 +3,7 @@ package com.example.werefrogs.cakeulator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -12,6 +13,8 @@ public class RecipePageActivity extends AppCompatActivity {
     private TextView recipeName, recipeView;
     private EditText servings;
     private Recipe recipeToPrint;
+    private CheckBox checkBox_Favourites;
+    private boolean checkBoxOnClick;
 
 
     @Override
@@ -40,6 +43,12 @@ public class RecipePageActivity extends AppCompatActivity {
 
         updateUI();
     }
+
+    public void addListenerOnButton() {
+    checkBox_Favourites = (CheckBox) findViewById(R.id.checkBox);
+    checkBoxOnClick= ((CheckBox) findViewById(R.id.checkBox)).isChecked();
+    }
+
 
     public void updateUI() {
         String recipePrint = "";

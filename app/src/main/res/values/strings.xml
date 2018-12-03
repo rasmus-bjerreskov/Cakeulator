@@ -6,4 +6,7 @@
     <string name="bt_addRecipe">Add to Recipes</string>
     <string name="bt_myLibrary">My Recipes</string>
     <string name="bt_addLine">+</string>
+    <string name="hint_enterNameRecipe">Enter the name of your recipe</string>
+    <string name="hint_amount">Amount</string>
+    <string name="text_favourites">Show favourites</string>
 </resources>
