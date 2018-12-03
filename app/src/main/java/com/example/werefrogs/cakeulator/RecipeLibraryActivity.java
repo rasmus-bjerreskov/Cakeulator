@@ -3,6 +3,8 @@ package com.example.werefrogs.cakeulator;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -10,11 +12,13 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+
 public class RecipeLibraryActivity extends AppCompatActivity {
     public static final String TAG = "Debug_key";
     public static final String EXTRA = "com.example.wereFrogs.Cakeulator";
-    private EditText searchLibrary;
-    private ListView listLibrary;
+    EditText searchLibrary;
+    ArrayAdapter<Recipe> adapter;
 
 
     @Override
@@ -23,12 +27,12 @@ public class RecipeLibraryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_recipe_library);
 
         searchLibrary = (EditText) findViewById(R.id.et_search);
-        listLibrary =   (ListView)findViewById(R.id.lv_Recipes);
-
         ListView lv = findViewById(R.id.lv_Recipes);
-        lv.setAdapter(new ArrayAdapter<Recipe>
+
+        adapter = new ArrayAdapter<Recipe>
                 (this, android.R.layout.simple_list_item_1,
-                        RecipeList.getInstance().getRecipeList()));
+                        RecipeList.getInstance().getRecipeList());
+        lv.setAdapter(adapter);
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             /**
@@ -48,6 +52,24 @@ public class RecipeLibraryActivity extends AppCompatActivity {
 
         });
 
+       searchLibrary.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
+                // When user changed the Text
+                RecipeLibraryActivity.this.adapter.getFilter().filter(cs);
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
+                }
+
+            @Override
+            public void afterTextChanged(Editable arg0) {
+
+            }
+        });
     }
     }
+
 
