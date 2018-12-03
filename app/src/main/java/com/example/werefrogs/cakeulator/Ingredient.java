@@ -6,7 +6,6 @@ public class Ingredient {
     private String ingredient;
 
     /**
-     *
      * @param amount
      * @param unit
      * @param ingredient
@@ -61,6 +60,7 @@ public class Ingredient {
 
     /**
      * returns unit and ingredient name
+     *
      * @return
      */
     public String getStrings() {
@@ -72,6 +72,10 @@ public class Ingredient {
     }
 
     public String toString() {
-        return "" + this.amount + " " + this.unit + " " + this.ingredient; //problem: two spaces if no unit ("2  eggs")
+        if (this.unit.equals("")) {
+            return Integer.toString(this.amount) + " " + this.ingredient;
+        } else {
+            return Integer.toString(this.amount) + " " + this.unit + " " + this.ingredient;
+        }
     }
 }
