@@ -59,6 +59,18 @@ public class Ingredient {
         this.ingredient = ingredient;
     }
 
+    /**
+     * returns unit and ingredient name
+     * @return
+     */
+    public String getStrings() {
+        if (this.unit.isEmpty()) {
+            return " " + this.ingredient;
+        } else {
+            return " " + this.unit + " " + this.ingredient;
+        }
+    }
+
     public String toString() {
         return "" + this.amount + " " + this.unit + " " + this.ingredient; //problem: two spaces if no unit ("2  eggs")
     }
