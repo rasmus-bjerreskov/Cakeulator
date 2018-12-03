@@ -26,12 +26,12 @@ public class RecipeLibraryActivity extends AppCompatActivity {
 
         searchLibrary = (EditText) findViewById(R.id.et_search);
         ListView lv = findViewById(R.id.lv_Recipes);
-/**
- * creates an adapter for the Recipe array
- */
         adapter = new ArrayAdapter<Recipe>
                 (this, android.R.layout.simple_list_item_1,
                         RecipeList.getInstance().getRecipeList());
+        /*
+         Adapter for the Recipe Array list made
+         */
         lv.setAdapter(adapter);
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -61,7 +61,6 @@ public class RecipeLibraryActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
-
                 RecipeLibraryActivity.this.adapter.getFilter().filter(cs);
             }
 
