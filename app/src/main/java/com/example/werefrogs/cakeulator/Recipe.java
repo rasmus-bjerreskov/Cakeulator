@@ -18,7 +18,7 @@ public class Recipe {
         this.ingredients = new ArrayList<Ingredient>();
     }
 
-    public Recipe(String name, int amount) {
+    public Recipe(String name, int servings) {
         this.name = name;
         this.servings = servings;
         this.ingredients = new ArrayList<Ingredient>();
@@ -49,9 +49,14 @@ public class Recipe {
         return this.name;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getServings() {
         return this.servings;
     }
+
     @Override
     public String toString() {
         return this.name;
