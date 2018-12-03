@@ -12,8 +12,6 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import java.util.ArrayList;
-
 public class RecipeLibraryActivity extends AppCompatActivity {
     public static final String TAG = "Debug_key";
     public static final String EXTRA = "com.example.wereFrogs.Cakeulator";
@@ -49,10 +47,8 @@ public class RecipeLibraryActivity extends AppCompatActivity {
                 nextActivity.putExtra(EXTRA, i);
                 startActivity(nextActivity);
             }
-
         });
-
-       searchLibrary.addTextChangedListener(new TextWatcher() {
+        searchLibrary.addTextChangedListener(new TextWatcher() {
 
             @Override
             public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
@@ -62,7 +58,7 @@ public class RecipeLibraryActivity extends AppCompatActivity {
 
             @Override
             public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
-                }
+            }
 
             @Override
             public void afterTextChanged(Editable arg0) {
@@ -70,6 +66,6 @@ public class RecipeLibraryActivity extends AppCompatActivity {
             }
         });
     }
-    }
+}
 
 
