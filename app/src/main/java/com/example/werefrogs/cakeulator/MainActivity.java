@@ -12,12 +12,16 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     EditText newName, newAmount, newUnit, newIngredient;
     Recipe newRecipe;
     ListView ingredientList;
     ArrayAdapter<Ingredient> adapterIngredient;
+    List<String> listIngredients = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,16 +68,14 @@ public class MainActivity extends AppCompatActivity {
         String unitToAdd = newUnit.getText().toString();
         String ingredientToAdd = newIngredient.getText().toString();
         String space = " ";
-        String linebreak = "\n";
-adapterIngredient = new ArrayAdapter<Ingredient>()
+
+        ingredientList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listIngredients));
         String ingredients = newAmount.getText().toString() + space + newUnit.getText().toString()
-                + space + newIngredient.getText().toString() + linebreak;
+                + space + newIngredient.getText().toString();
         newRecipe.addIngredient(new Ingredient(amountToAdd, unitToAdd, ingredientToAdd));
-        ingredientList.add(ingredients);
+        listIngredients.add(ingredients);
         buttonReset();
     }
-
-
     public void buttonReset() {
         newAmount.setText(null);
         newUnit.setText(null);
