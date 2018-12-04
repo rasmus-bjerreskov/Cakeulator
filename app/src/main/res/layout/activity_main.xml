@@ -137,14 +137,14 @@
         android:id="@+id/et_amount"
         android:layout_width="60dp"
         android:layout_height="40dp"
-        android:layout_marginTop="464dp"
+        android:layout_marginBottom="16dp"
         android:ems="10"
-        android:inputType="number"
         android:hint="1"
+        android:inputType="number"
+        app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toStartOf="@+id/tv_servings"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tv_makes"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/tv_makes" />
 
     <TextView
         android:id="@+id/tv_servings"
@@ -158,5 +158,25 @@
         app:layout_constraintBottom_toBottomOf="@+id/et_amount"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/et_amount" />/>
+        app:layout_constraintStart_toEndOf="@+id/et_amount" />
+
+    <TextView
+        android:id="@+id/tv_ingredient"
+        android:layout_width="379dp"
+        android:layout_height="219dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="TextView"
+        android:scrollbars="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/et_amount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button4" />
+
+
+    />
 </android.support.constraint.ConstraintLayout>

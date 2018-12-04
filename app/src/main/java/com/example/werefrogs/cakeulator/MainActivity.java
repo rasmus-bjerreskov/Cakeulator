@@ -7,12 +7,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     EditText newName, newAmount, newUnit, newIngredient;
     Recipe newRecipe;
+    TextView ingredientList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,8 +25,10 @@ public class MainActivity extends AppCompatActivity {
         newAmount = findViewById(R.id.et_addAmount);
         newUnit = findViewById(R.id.et_addUnit);
         newIngredient = findViewById(R.id.et_addIngredient);
+        ingredientList = findViewById(R.id.tv_ingredient);
 
         newRecipe = new Recipe();
+
 
     }
     public void buttonPressed_toLibrary(View v) {
@@ -57,5 +61,8 @@ public class MainActivity extends AppCompatActivity {
         String ingredientToAdd = newIngredient.getText().toString();
 
         newRecipe.addIngredient(new Ingredient(amountToAdd, unitToAdd, ingredientToAdd));
+        ingredientList.setText(newAmount.getText().toString() + " "+ newUnit.getText().toString()
+                + " " + newIngredient.getText().toString() + "\n");
+
     }
 }
