@@ -7,6 +7,12 @@ public class Recipe {
     private int servings;
     private ArrayList<Ingredient> ingredients;
 
+    public Recipe() {
+        this.name = "Unnamed recipe";
+        this.servings = 1;
+        this.ingredients = new ArrayList<Ingredient>();
+    }
+
     /**
      * creates empty recipe with only a name
      *
@@ -23,6 +29,7 @@ public class Recipe {
         this.servings = servings;
         this.ingredients = new ArrayList<Ingredient>();
     }
+
     /**
      * adds an ingredient object to the array
      *
@@ -30,6 +37,15 @@ public class Recipe {
      */
     public void addIngredient(Ingredient ingredient) {
         this.ingredients.add(ingredient);
+    }
+
+    /**
+     * sets name to Unnamed recipe if no string given
+     *
+     * @param name
+     */
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**
@@ -42,7 +58,6 @@ public class Recipe {
     }
 
     /**
-     *
      * @return
      */
     public String getName() {
@@ -50,7 +65,6 @@ public class Recipe {
     }
 
     /**
-     *
      * @return
      */
     public int getServings() {
