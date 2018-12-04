@@ -6,7 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,7 +16,8 @@ public class MainActivity extends AppCompatActivity {
 
     EditText newName, newAmount, newUnit, newIngredient;
     Recipe newRecipe;
-    TextView ingredientList;
+    ListView ingredientList;
+    ArrayAdapter<Ingredient> adapterIngredient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,16 +28,16 @@ public class MainActivity extends AppCompatActivity {
         newAmount = findViewById(R.id.et_addAmount);
         newUnit = findViewById(R.id.et_addUnit);
         newIngredient = findViewById(R.id.et_addIngredient);
-        ingredientList = findViewById(R.id.tv_ingredient);
+        ingredientList = findViewById(R.id.lv_ingredients);
 
         newRecipe = new Recipe();
-
-
     }
+
     public void buttonPressed_toLibrary(View v) {
         Intent intent = new Intent(this, RecipeLibraryActivity.class);
         startActivity(intent);
     }
+
     public void buttonPressed_addToLibrary(View v) {
         //Makes a toast (short popup text) whenever the "Add to Library" button is pressed
         Context context = getApplicationContext();
@@ -50,19 +53,30 @@ public class MainActivity extends AppCompatActivity {
         RecipeList.getInstance().addRecipe(r1);
 
         String nameToAdd = newName.getText().toString();
-        Log.d("setName", nameToAdd );
+        Log.d("setName", nameToAdd);
         newRecipe.setName(nameToAdd);
         Log.d("getName", newRecipe.getName());
         RecipeList.getInstance().addRecipe(newRecipe);
     }
+
     public void buttonPressed_addIngredient(View v) {
         int amountToAdd = Integer.parseInt(newAmount.getText().toString());
         String unitToAdd = newUnit.getText().toString();
         String ingredientToAdd = newIngredient.getText().toString();
-
+        String space = " ";
+        String linebreak = "\n";
+adapterIngredient = new ArrayAdapter<Ingredient>()
+        String ingredients = newAmount.getText().toString() + space + newUnit.getText().toString()
+                + space + newIngredient.getText().toString() + linebreak;
         newRecipe.addIngredient(new Ingredient(amountToAdd, unitToAdd, ingredientToAdd));
-        ingredientList.setText(newAmount.getText().toString() + " "+ newUnit.getText().toString()
-                + " " + newIngredient.getText().toString() + "\n");
+        ingredientList.add(ingredients);
+        buttonReset();
+    }
 
+
+    public void buttonReset() {
+        newAmount.setText(null);
+        newUnit.setText(null);
+        newIngredient.setText(null);
     }
 }
