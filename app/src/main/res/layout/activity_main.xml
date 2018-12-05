@@ -44,27 +44,27 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="16dp"
         android:onClick="buttonPressed_addToLibrary"
         android:text="@string/bt_addRecipe"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button3"
         app:layout_constraintHorizontal_bias="0.115"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_amount" />
 
     <Button
         android:id="@+id/button3"
         android:layout_width="146dp"
-        android:layout_height="wrap_content"
+        android:layout_height="46dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="16dp"
         android:onClick="buttonPressed_toLibrary"
         android:text="@string/bt_myLibrary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_amount" />
 
     <Button
         android:id="@+id/button4"
@@ -105,7 +105,7 @@
         app:layout_constraintTop_toBottomOf="@+id/et_addName" />
 
     <EditText
-        android:id="@+id/et_addIngredient"
+        android:id="@+id/et_addItem"
         android:layout_width="153dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
@@ -135,16 +135,16 @@
 
     <EditText
         android:id="@+id/et_amount"
-        android:layout_width="60dp"
+        android:layout_width="62dp"
         android:layout_height="40dp"
-        android:layout_marginTop="464dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
-        android:inputType="number"
         android:hint="1"
+        android:inputType="number"
         app:layout_constraintEnd_toStartOf="@+id/tv_servings"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/tv_makes"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/lv_ingredients" />
 
     <TextView
         android:id="@+id/tv_servings"
@@ -158,5 +158,21 @@
         app:layout_constraintBottom_toBottomOf="@+id/et_amount"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/et_amount" />/>
+        app:layout_constraintStart_toEndOf="@+id/et_amount" />
+
+    <ListView
+        android:id="@+id/lv_ingredients"
+        android:layout_width="379dp"
+        android:layout_height="219dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button4" />/>
+
 </android.support.constraint.ConstraintLayout>

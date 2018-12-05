@@ -14,7 +14,6 @@ class RecipeList {
         this.recipes = new ArrayList<Recipe>();
 
     }
-
     /**
      * returns array of recipes
      * @return

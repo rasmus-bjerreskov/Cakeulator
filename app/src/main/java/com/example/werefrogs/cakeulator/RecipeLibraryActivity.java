@@ -74,7 +74,7 @@ public class RecipeLibraryActivity extends AppCompatActivity {
             /* makes sure that the sequence of characters in the search field is the same as in the
             recipe list view
              */
-
+         // The search function was made using the tutorial and source code from http://aboutyusata.blogspot.com/2015/07/android-adding-search-functionality-to.html
         });
     }
 }

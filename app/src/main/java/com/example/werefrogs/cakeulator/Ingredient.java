@@ -1,31 +1,31 @@
 package com.example.werefrogs.cakeulator;
 
 public class Ingredient {
-    private int amount;
+    private double amount;
     private String unit;
-    private String ingredient;
+    private String item;
 
     /**
      * @param amount
      * @param unit
-     * @param ingredient
+     * @param item
      */
-    public Ingredient(int amount, String unit, String ingredient) {
+    public Ingredient(double amount, String unit, String item) {
         this.amount = amount;
         this.unit = unit;
-        this.ingredient = ingredient;
+        this.item = item;
     }
 
-    public Ingredient(int amount, String ingredient) {
+    public Ingredient(double amount, String item) {
         this.amount = amount;
         this.unit = "";
-        this.ingredient = ingredient;
+        this.item = item;
     }
 
     /**
      * @return
      */
-    public int getAmount() {
+    public double getAmount() {
         return amount;
     }
 
@@ -39,14 +39,14 @@ public class Ingredient {
     /**
      * @return
      */
-    public String getIngredient() {
-        return ingredient;
+    public String getItem() {
+        return item;
     }
 
     /**
      * @param amount
      */
-    public void setAmount(int amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
 
@@ -58,30 +58,30 @@ public class Ingredient {
     }
 
     /**
-     * @param ingredient
+     * @param item
      */
-    public void setIngredient(String ingredient) {
-        this.ingredient = ingredient;
+    public void setItem(String item) {
+        this.item = item;
     }
 
     /**
-     * returns unit and ingredient name
+     * returns unit and item name
      *
      * @return
      */
     public String getStrings() {
         if (this.unit.isEmpty()) {
-            return " " + this.ingredient;
+            return " " + this.item;
         } else {
-            return " " + this.unit + " " + this.ingredient;
+            return " " + this.unit + " " + this.item;
         }
     }
 
     public String toString() {
         if (this.unit.equals("")) {
-            return Integer.toString(this.amount) + " " + this.ingredient;
+            return Double.toString(this.amount) + " " + this.item;
         } else {
-            return Integer.toString(this.amount) + " " + this.unit + " " + this.ingredient;
+            return Double.toString(this.amount) + " " + this.unit + " " + this.item;
         }
     }
 }
