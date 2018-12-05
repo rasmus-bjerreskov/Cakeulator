@@ -13,8 +13,9 @@ public class RecipePageActivity extends AppCompatActivity {
     private TextView recipeName, recipeView;
     private EditText servings;
     private Recipe recipeToPrint;
-    private CheckBox checkBox_Favourites;
-    private boolean checkBoxOnClick;
+    CheckBox checkBox;
+    private boolean iCheckBox;
+
 
 
     @Override
@@ -24,6 +25,7 @@ public class RecipePageActivity extends AppCompatActivity {
         recipeName = findViewById(R.id.tv_recipeName);
         recipeView = findViewById(R.id.tv_recipe);
         servings = findViewById(R.id.et_amount);
+        checkBox = (CheckBox) findViewById(R.id.checkBox);
 
         Bundle b = getIntent().getExtras();
         int i = b.getInt(EXTRA, 0);
@@ -44,9 +46,30 @@ public class RecipePageActivity extends AppCompatActivity {
         updateUI();
     }
 
-    public void addListenerOnButton() {
-    checkBox_Favourites = (CheckBox) findViewById(R.id.checkBox);
-    checkBoxOnClick= ((CheckBox) findViewById(R.id.checkBox)).isChecked();
+    /**
+     *
+     * Method returns iCheckBox=0 if the favourites button is unchecked
+     * Method returns iCheckBox=1 if the favourites button is checked
+     * @return
+     */
+    public boolean CheckFavourites() {
+
+        if (checkBox.isChecked()) {
+            return iCheckBox = true;
+        }
+        else {
+            return iCheckBox = false;
+        }
+    }
+
+
+    public void onClickFavourites(View view) {
+        CheckFavourites();
+    }
+
+    //getter for favourite value
+    public boolean getiCheckBox() {
+        return this.iCheckBox;
     }
 
 

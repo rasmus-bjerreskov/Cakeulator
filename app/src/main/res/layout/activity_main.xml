@@ -31,7 +31,6 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:ems="10"
-        android:hint="@string/hint_enterNameRecipe"
         android:inputType="textPersonName"
         android:hint="Recipe name..."
         app:layout_constraintEnd_toEndOf="parent"
