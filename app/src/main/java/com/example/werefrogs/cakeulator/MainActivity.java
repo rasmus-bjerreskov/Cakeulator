@@ -16,7 +16,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText newName, newAmount, newUnit, newItem;
+    EditText newName, newAmount, newUnit, newItem, newServing;
     Recipe newRecipe;
     Ingredient newIngredient;
     ListView ingredientList;
@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         newUnit = findViewById(R.id.et_addUnit);
         newItem = findViewById(R.id.et_addItem);
         ingredientList = findViewById(R.id.lv_ingredients);
+        newServing = findViewById(R.id.et_amount);
 
         newRecipe = new Recipe();
     }
@@ -56,12 +57,14 @@ public class MainActivity extends AppCompatActivity {
         r1.addIngredient(new Ingredient(4, "slice", "cucumber"));
         RecipeList.getInstance().addRecipe(r1);
 
-        //User inputted recipe
+        //User inputted recipe name
         String nameToAdd = newName.getText().toString();
         Log.d("setName", nameToAdd);
         newRecipe.setName(nameToAdd);
         Log.d("getName", newRecipe.getName());
         RecipeList.getInstance().addRecipe(newRecipe);
+
+        int servingToAdd = Integer.parseInt(newServing.getText().toString());
 
         recipeReset();
     }
@@ -70,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
         double amountToAdd = Double.parseDouble(newAmount.getText().toString());
         String unitToAdd = newUnit.getText().toString();
         String itemToAdd = newItem.getText().toString();
+
 
         newIngredient = new Ingredient(amountToAdd, unitToAdd, itemToAdd);
         newRecipe.addIngredient(newIngredient);
