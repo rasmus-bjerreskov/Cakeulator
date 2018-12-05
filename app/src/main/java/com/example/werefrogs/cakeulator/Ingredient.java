@@ -48,7 +48,7 @@ public class Ingredient {
      */
     public void setAmount(double amount) {
         this.amount = amount;
-        }
+    }
 
 
     /**
@@ -79,10 +79,6 @@ public class Ingredient {
     }
 
     public String toString() {
-        if (this.unit.equals("")) {
-            return Double.toString(this.amount) + " " + this.item;
-        } else {
-            return Double.toString(this.amount) + " " + this.unit + " " + this.item;
-        }
+        return this.amount + getStrings();
     }
 }

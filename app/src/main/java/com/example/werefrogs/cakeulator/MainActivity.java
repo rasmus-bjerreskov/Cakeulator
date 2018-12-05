@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, RecipeLibraryActivity.class);
         startActivity(intent);
     }
+
     public void buttonPressed_addToLibrary(View v) { //Adds given recipe to the library
         //Makes a toast (short popup text) whenever the "Add to Library" button is pressed
         Context context = getApplicationContext();
@@ -78,12 +79,14 @@ public class MainActivity extends AppCompatActivity {
         lvIngredients.setAdapter(adapterIngredient);
         ingredientReset();
     }
+
     public void ingredientReset() { //Resets the ingredient input fields to blank
         newAmount.setText(null);
         newUnit.setText(null);
         newItem.setText(null);
         newIngredient = null;
     }
+
     public void recipeReset() { //Resets the recipe input fields and the list to blank
         newName.setText(null);
         newServing.setText(null);
