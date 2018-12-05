@@ -18,6 +18,7 @@ public class RecipePageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_page);
+
         recipeName = findViewById(R.id.tv_recipeName);
         recipeView = findViewById(R.id.tv_recipe);
         servings = findViewById(R.id.et_amount);
