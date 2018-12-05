@@ -18,9 +18,10 @@ public class MainActivity extends AppCompatActivity {
 
     EditText newName, newAmount, newUnit, newItem;
     Recipe newRecipe;
+    Ingredient newIngredient;
     ListView ingredientList;
     ArrayAdapter<Ingredient> adapterIngredient;
-    List<String> listIngredients = new ArrayList<String>();
+    List<Ingredient> listIngredients = new ArrayList<Ingredient>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,18 +67,19 @@ public class MainActivity extends AppCompatActivity {
         double amountToAdd = Double.parseDouble(newAmount.getText().toString());
         String unitToAdd = newUnit.getText().toString();
         String itemToAdd = newItem.getText().toString();
-        String space = " ";
 
-        ingredientList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listIngredients));
-        String ingredients = newAmount.getText().toString() + space + newUnit.getText().toString()
-                + space + newItem.getText().toString();
-        newRecipe.addIngredient(new Ingredient(amountToAdd, unitToAdd, itemToAdd));
-        listIngredients.add(ingredients);
+
+
+        newIngredient = new Ingredient(amountToAdd, unitToAdd, itemToAdd);
+        newRecipe.addIngredient(newIngredient);
+        listIngredients.add(newIngredient);
+        ingredientList.setAdapter(new ArrayAdapter<Ingredient>(this, android.R.layout.simple_list_item_1, listIngredients));
         buttonReset();
     }
     public void buttonReset() {
         newAmount.setText(null);
         newUnit.setText(null);
         newItem.setText(null);
+        newIngredient = null;
     }
 }
