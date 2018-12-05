@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     Ingredient newIngredient;
     ListView ingredientList;
     ArrayAdapter<Ingredient> adapterIngredient;
-    List<Ingredient> listIngredients = new ArrayList<Ingredient>();
+    ArrayList<Ingredient> listIngredients = new ArrayList<Ingredient>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, RecipeLibraryActivity.class);
         startActivity(intent);
     }
+
     public void buttonPressed_addToLibrary(View v) { //Adds given recipe to the library
         //Makes a toast (short popup text) whenever the "Add to Library" button is pressed
         Context context = getApplicationContext();
@@ -79,18 +80,25 @@ public class MainActivity extends AppCompatActivity {
         newIngredient = new Ingredient(amountToAdd, unitToAdd, itemToAdd);
         newRecipe.addIngredient(newIngredient);
         listIngredients.add(newIngredient);
-        ingredientList.setAdapter(new ArrayAdapter<Ingredient>(this, android.R.layout.simple_list_item_1, listIngredients));
+        adapterIngredient = new ArrayAdapter<Ingredient>(this, android.R.layout.simple_list_item_1, listIngredients);
+        ingredientList.setAdapter(adapterIngredient);
         ingredientReset();
     }
+
     public void ingredientReset() { //Resets the ingredient input fields to blank
         newAmount.setText(null);
         newUnit.setText(null);
         newItem.setText(null);
         newIngredient = null;
     }
+
     public void recipeReset() { //Resets the recipe input fields and the list to blank
-        ingredientList.setAdapter(null); //Causes a crash when a second recipe is added????
-        listIngredients = null;
+        listIngredients.clear();
         newName.setText(null);
+        newRecipe = null;
+        newServing.setText(null);
+
+        newRecipe = new Recipe();
+        ingredientList.setAdapter(adapterIngredient);
     }
 }
