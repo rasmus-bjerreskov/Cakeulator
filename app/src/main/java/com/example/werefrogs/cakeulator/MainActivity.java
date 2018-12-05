@@ -63,15 +63,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void buttonPressed_addIngredient(View v) {
-        int amountToAdd = Integer.parseInt(newAmount.getText().toString());
+        double amountToAdd = Double.parseDouble(newAmount.getText().toString());
         String unitToAdd = newUnit.getText().toString();
-        String ingredientToAdd = newItem.getText().toString();
+        String itemToAdd = newItem.getText().toString();
         String space = " ";
 
         ingredientList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listIngredients));
         String ingredients = newAmount.getText().toString() + space + newUnit.getText().toString()
                 + space + newItem.getText().toString();
-        newRecipe.addIngredient(new Ingredient(amountToAdd, unitToAdd, ingredientToAdd));
+        newRecipe.addIngredient(new Ingredient(amountToAdd, unitToAdd, itemToAdd));
         listIngredients.add(ingredients);
         buttonReset();
     }

@@ -44,7 +44,7 @@ public class RecipePageActivity extends AppCompatActivity {
 
     public void updateUI() {
         String recipePrint = "";
-        int multiplier;
+        double multiplier;
 
         if (servings.getText().toString().equals(null) || servings.getText().toString().equals("")) {
             multiplier = 1; //overrides empty inputs, activity crashes without this
@@ -53,7 +53,7 @@ public class RecipePageActivity extends AppCompatActivity {
         }
 
         for (Ingredient j : recipeToPrint.getIngredients()) {
-            int newServings = j.getAmount() * multiplier;
+            double newServings = j.getAmount() * multiplier;
             recipePrint += newServings + j.getStrings() + "\n";
         }
 

@@ -1,7 +1,7 @@
 package com.example.werefrogs.cakeulator;
 
 public class Ingredient {
-    private int amount;
+    private double amount;
     private String unit;
     private String item;
 
@@ -10,13 +10,13 @@ public class Ingredient {
      * @param unit
      * @param item
      */
-    public Ingredient(int amount, String unit, String item) {
+    public Ingredient(double amount, String unit, String item) {
         this.amount = amount;
         this.unit = unit;
         this.item = item;
     }
 
-    public Ingredient(int amount, String item) {
+    public Ingredient(double amount, String item) {
         this.amount = amount;
         this.unit = "";
         this.item = item;
@@ -25,7 +25,7 @@ public class Ingredient {
     /**
      * @return
      */
-    public int getAmount() {
+    public double getAmount() {
         return amount;
     }
 
@@ -46,7 +46,7 @@ public class Ingredient {
     /**
      * @param amount
      */
-    public void setAmount(int amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
 
@@ -79,9 +79,9 @@ public class Ingredient {
 
     public String toString() {
         if (this.unit.equals("")) {
-            return Integer.toString(this.amount) + " " + this.item;
+            return Double.toString(this.amount) + " " + this.item;
         } else {
-            return Integer.toString(this.amount) + " " + this.unit + " " + this.item;
+            return Double.toString(this.amount) + " " + this.unit + " " + this.item;
         }
     }
 }
