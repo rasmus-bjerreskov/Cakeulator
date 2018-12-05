@@ -64,7 +64,9 @@ public class MainActivity extends AppCompatActivity {
         Log.d("getName", newRecipe.getName());
         RecipeList.getInstance().addRecipe(newRecipe);
 
+        //User inputted servings
         int servingToAdd = Integer.parseInt(newServing.getText().toString());
+        newRecipe.setServings(servingToAdd);
 
         recipeReset();
     }
@@ -73,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
         double amountToAdd = Double.parseDouble(newAmount.getText().toString());
         String unitToAdd = newUnit.getText().toString();
         String itemToAdd = newItem.getText().toString();
-
 
         newIngredient = new Ingredient(amountToAdd, unitToAdd, itemToAdd);
         newRecipe.addIngredient(newIngredient);
