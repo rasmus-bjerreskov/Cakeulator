@@ -23,5 +23,12 @@ class FavouriteList {
     public void addFavouriteRecipe(Recipe rfav) {
         this.favouriteList.add(rfav);
     }
-
+    /**
+     * returns array at index
+     * @param i
+     * @return
+     */
+    public Recipe getRecipe(int i) {
+        return favouriteList.get(i);
+    }
 }
