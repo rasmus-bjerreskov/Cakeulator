@@ -87,7 +87,7 @@ public class RecipePageActivity extends AppCompatActivity {
         if (servings.getText().toString().equals(null) || servings.getText().toString().equals("")) {
             multiplier = 1; //overrides empty inputs, activity crashes without this
         } else {
-            multiplier = Integer.parseInt(servings.getText().toString())
+            multiplier = Double.parseDouble(servings.getText().toString())
                     / recipeToPrint.getServings(); // given/default servings
         }
 
