@@ -13,7 +13,6 @@ public class RecipePageActivity extends AppCompatActivity {
     private EditText servings;
     private Recipe recipeToPrint;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +37,6 @@ public class RecipePageActivity extends AppCompatActivity {
                 }
             }
         });
-
         updateUI();
     }
 
@@ -51,12 +49,10 @@ public class RecipePageActivity extends AppCompatActivity {
         } else {
             multiplier = Integer.parseInt(servings.getText().toString()) / recipeToPrint.getServings(); // given/default servings
         }
-
         for (Ingredient j : recipeToPrint.getIngredients()) {
             double newServings = j.getAmount() * multiplier;
             recipePrint += newServings + j.getStrings() + "\n";
         }
-
         recipeView.setText(recipePrint);
     }
 }
