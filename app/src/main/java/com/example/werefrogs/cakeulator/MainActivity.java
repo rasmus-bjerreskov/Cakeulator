@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
         newServing = findViewById(R.id.et_amount);
 
         newRecipe = new Recipe();
-
         adapterIngredient = new ArrayAdapter<Ingredient>(this, android.R.layout.simple_list_item_1, arrayIngredient);
     }
 
@@ -51,13 +50,6 @@ public class MainActivity extends AppCompatActivity {
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
 
-        //Test recipe
-        Recipe r1 = new Recipe("Smørrebrød");
-        r1.addIngredient(new Ingredient(1, "slice", "rye bread"));
-        r1.addIngredient(new Ingredient(2, "slice", "roast beef"));
-        r1.addIngredient(new Ingredient(4, "slice", "cucumber"));
-        RecipeList.getInstance().addRecipe(r1);
-
         //User inputted recipe name
         String nameToAdd = newName.getText().toString();
         Log.d("setName", nameToAdd);
@@ -72,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
             servingToAdd = Integer.parseInt(newServing.getText().toString());
         }
         newRecipe.setServings(servingToAdd);
-
         recipeReset();
     }
 
@@ -95,7 +86,6 @@ public class MainActivity extends AppCompatActivity {
         newIngredient = null;
     }
     public void recipeReset() { //Resets the recipe input fields and the list to blank
-        //lvIngredients.setAdapter(null); //Causes a crash when a second recipe is added????
         newName.setText(null);
         newServing.setText(null);
         newRecipe = null;

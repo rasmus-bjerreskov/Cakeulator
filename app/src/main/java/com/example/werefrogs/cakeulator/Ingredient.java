@@ -48,7 +48,8 @@ public class Ingredient {
      */
     public void setAmount(double amount) {
         this.amount = amount;
-    }
+        }
+
 
     /**
      * @param unit
