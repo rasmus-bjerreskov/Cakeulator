@@ -12,16 +12,15 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText newName, newAmount, newUnit, newItem;
+    EditText newName, newAmount, newUnit, newItem, newServing;
     Recipe newRecipe;
     Ingredient newIngredient;
-    ListView ingredientList;
+    ListView lvIngredients;
     ArrayAdapter<Ingredient> adapterIngredient;
-    List<Ingredient> listIngredients = new ArrayList<Ingredient>();
+    ArrayList<Ingredient> arrayIngredient = new ArrayList<Ingredient>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,17 +30,18 @@ public class MainActivity extends AppCompatActivity {
         newAmount = findViewById(R.id.et_addAmount);
         newUnit = findViewById(R.id.et_addUnit);
         newItem = findViewById(R.id.et_addItem);
-        ingredientList = findViewById(R.id.lv_ingredients);
+        lvIngredients = findViewById(R.id.lv_ingredients);
+        newServing = findViewById(R.id.et_amount);
 
         newRecipe = new Recipe();
+        adapterIngredient = new ArrayAdapter<Ingredient>(this, android.R.layout.simple_list_item_1, arrayIngredient);
     }
 
-    public void buttonPressed_toLibrary(View v) {
+    public void buttonPressed_toLibrary(View v) { //Switches activities (Main to Recipe Library)
         Intent intent = new Intent(this, RecipeLibraryActivity.class);
         startActivity(intent);
     }
-
-    public void buttonPressed_addToLibrary(View v) {
+    public void buttonPressed_addToLibrary(View v) { //Adds given recipe to the library
         //Makes a toast (short popup text) whenever the "Add to Library" button is pressed
         Context context = getApplicationContext();
         CharSequence text = "Recipe added!";
@@ -49,36 +49,51 @@ public class MainActivity extends AppCompatActivity {
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
 
-        Recipe r1 = new Recipe("Smørrebrød");
-        r1.addIngredient(new Ingredient(1, "slice", "rye bread"));
-        r1.addIngredient(new Ingredient(2, "slice", "roast beef"));
-        r1.addIngredient(new Ingredient(4, "slice", "cucumber"));
-        RecipeList.getInstance().addRecipe(r1);
-
+        //User inputted recipe name
         String nameToAdd = newName.getText().toString();
         Log.d("setName", nameToAdd);
         newRecipe.setName(nameToAdd);
         Log.d("getName", newRecipe.getName());
         RecipeList.getInstance().addRecipe(newRecipe);
+
+        //User inputted servings
+        int servingToAdd = 1;
+        if (!newServing.getText().toString().isEmpty()) {
+            //servings defaults to 1
+            servingToAdd = Integer.parseInt(newServing.getText().toString());
+        }
+        newRecipe.setServings(servingToAdd);
+        recipeReset();
     }
 
-    public void buttonPressed_addIngredient(View v) {
+    public void buttonPressed_addIngredient(View v) { //Adds ingredient to the List View
         double amountToAdd = Double.parseDouble(newAmount.getText().toString());
         String unitToAdd = newUnit.getText().toString();
         String itemToAdd = newItem.getText().toString();
 
-
-
         newIngredient = new Ingredient(amountToAdd, unitToAdd, itemToAdd);
         newRecipe.addIngredient(newIngredient);
-        listIngredients.add(newIngredient);
-        ingredientList.setAdapter(new ArrayAdapter<Ingredient>(this, android.R.layout.simple_list_item_1, listIngredients));
-        buttonReset();
+
+        arrayIngredient.add(newIngredient);
+        lvIngredients.setAdapter(adapterIngredient);
+        ingredientReset();
     }
-    public void buttonReset() {
+    public void ingredientReset() { //Resets the ingredient input fields to blank
         newAmount.setText(null);
         newUnit.setText(null);
         newItem.setText(null);
         newIngredient = null;
+    }
+    public void recipeReset() { //Resets the recipe input fields and the list to blank
+        newName.setText(null);
+        newServing.setText(null);
+        newRecipe = null;
+
+        newRecipe = new Recipe(); //recycles newRecipe instance
+
+        //clears the ingredients array and creates a new adapter
+        arrayIngredient.clear();
+        adapterIngredient = new ArrayAdapter<Ingredient>(this, android.R.layout.simple_list_item_1, arrayIngredient);
+        lvIngredients.setAdapter(adapterIngredient);
     }
 }

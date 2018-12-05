@@ -18,7 +18,6 @@ public class RecipePageActivity extends AppCompatActivity {
 
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +35,11 @@ public class RecipePageActivity extends AppCompatActivity {
         recipeToPrint = RecipeList.getInstance().getRecipe(i);
         recipeName.setText(RecipeList.getInstance().getRecipe(i).getName());
 
+        /*
+        updates the UI when clicking outside of the EditText field
+        https://stackoverflow.com/a/47729775
+        see activity_recipe_page.xml
+         */
         servings.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -44,7 +48,6 @@ public class RecipePageActivity extends AppCompatActivity {
                 }
             }
         });
-
         updateUI();
     }
 
@@ -84,14 +87,14 @@ public class RecipePageActivity extends AppCompatActivity {
         if (servings.getText().toString().equals(null) || servings.getText().toString().equals("")) {
             multiplier = 1; //overrides empty inputs, activity crashes without this
         } else {
-            multiplier = Integer.parseInt(servings.getText().toString()) / recipeToPrint.getServings(); // given/default servings
+            multiplier = Integer.parseInt(servings.getText().toString())
+                    / recipeToPrint.getServings(); // given/default servings
         }
 
         for (Ingredient j : recipeToPrint.getIngredients()) {
             double newServings = j.getAmount() * multiplier;
             recipePrint += newServings + j.getStrings() + "\n";
         }
-
         recipeView.setText(recipePrint);
     }
 }

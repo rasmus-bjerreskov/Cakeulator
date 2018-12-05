@@ -8,6 +8,7 @@
     android:clickable="true"
     android:focusable="true"
     tools:context=".RecipePageActivity">
+    <!-- https://stackoverflow.com/a/47729775-->
 
     <TextView
         android:id="@+id/tv_recipe"

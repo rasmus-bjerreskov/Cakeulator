@@ -10,7 +10,7 @@ public class Recipe {
 
     public Recipe() {
         this.name = "Unnamed recipe";
-        this.servings = 1;
+        this.servings = getServings();
         this.ingredients = new ArrayList<Ingredient>();
         this.isFavourite = false;
     }
@@ -22,7 +22,7 @@ public class Recipe {
      */
     public Recipe(String name) {
         this.name = name;
-        this.servings = 1;
+        this.servings = getServings();
         this.ingredients = new ArrayList<Ingredient>();
         this.isFavourite = false;
     }
@@ -49,6 +49,10 @@ public class Recipe {
      */
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setServings(int servings) {
+        this.servings = servings;
     }
 
     /**
