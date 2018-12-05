@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void buttonPressed_addToLibrary(View v) {
+    public void buttonPressed_addToLibrary(View v) { //Adds given recipe to the library
         //Makes a toast (short popup text) whenever the "Add to Library" button is pressed
         Context context = getApplicationContext();
         CharSequence text = "Recipe added!";
@@ -50,36 +50,43 @@ public class MainActivity extends AppCompatActivity {
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
 
+        //Test recipe
         Recipe r1 = new Recipe("Smørrebrød");
         r1.addIngredient(new Ingredient(1, "slice", "rye bread"));
         r1.addIngredient(new Ingredient(2, "slice", "roast beef"));
         r1.addIngredient(new Ingredient(4, "slice", "cucumber"));
         RecipeList.getInstance().addRecipe(r1);
 
+        //User inputted recipe
         String nameToAdd = newName.getText().toString();
         Log.d("setName", nameToAdd);
         newRecipe.setName(nameToAdd);
         Log.d("getName", newRecipe.getName());
         RecipeList.getInstance().addRecipe(newRecipe);
+
+        recipeReset();
     }
 
-    public void buttonPressed_addIngredient(View v) {
+    public void buttonPressed_addIngredient(View v) { //Adds ingredient to the List View
         double amountToAdd = Double.parseDouble(newAmount.getText().toString());
         String unitToAdd = newUnit.getText().toString();
         String itemToAdd = newItem.getText().toString();
-
-
 
         newIngredient = new Ingredient(amountToAdd, unitToAdd, itemToAdd);
         newRecipe.addIngredient(newIngredient);
         listIngredients.add(newIngredient);
         ingredientList.setAdapter(new ArrayAdapter<Ingredient>(this, android.R.layout.simple_list_item_1, listIngredients));
-        buttonReset();
+        ingredientReset();
     }
-    public void buttonReset() {
+    public void ingredientReset() { //Resets the ingredient input fields to blank
         newAmount.setText(null);
         newUnit.setText(null);
         newItem.setText(null);
         newIngredient = null;
+    }
+    public void recipeReset() { //Resets the recipe input fields and the list to blank
+
+        listIngredients = null;
+        newName.setText(null);
     }
 }
