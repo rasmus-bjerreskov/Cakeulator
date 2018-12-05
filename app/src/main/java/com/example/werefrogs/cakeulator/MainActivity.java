@@ -12,16 +12,15 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     EditText newName, newAmount, newUnit, newItem, newServing;
     Recipe newRecipe;
     Ingredient newIngredient;
-    ListView ingredientList;
+    ListView lvIngredients;
     ArrayAdapter<Ingredient> adapterIngredient;
-    List<Ingredient> listIngredients = new ArrayList<Ingredient>();
+    ArrayList<Ingredient> arrayIngredient = new ArrayList<Ingredient>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,10 +31,12 @@ public class MainActivity extends AppCompatActivity {
         newAmount = findViewById(R.id.et_addAmount);
         newUnit = findViewById(R.id.et_addUnit);
         newItem = findViewById(R.id.et_addItem);
-        ingredientList = findViewById(R.id.lv_ingredients);
+        lvIngredients = findViewById(R.id.lv_ingredients);
         newServing = findViewById(R.id.et_amount);
 
         newRecipe = new Recipe();
+
+        adapterIngredient = new ArrayAdapter<Ingredient>(this, android.R.layout.simple_list_item_1, arrayIngredient);
     }
 
     public void buttonPressed_toLibrary(View v) { //Switches activities (Main to Recipe Library)
@@ -65,7 +66,11 @@ public class MainActivity extends AppCompatActivity {
         RecipeList.getInstance().addRecipe(newRecipe);
 
         //User inputted servings
-        int servingToAdd = Integer.parseInt(newServing.getText().toString());
+        int servingToAdd = 1;
+        if (!newServing.getText().toString().isEmpty()) {
+            //servings defaults to 1
+            servingToAdd = Integer.parseInt(newServing.getText().toString());
+        }
         newRecipe.setServings(servingToAdd);
 
         recipeReset();
@@ -78,8 +83,9 @@ public class MainActivity extends AppCompatActivity {
 
         newIngredient = new Ingredient(amountToAdd, unitToAdd, itemToAdd);
         newRecipe.addIngredient(newIngredient);
-        listIngredients.add(newIngredient);
-        ingredientList.setAdapter(new ArrayAdapter<Ingredient>(this, android.R.layout.simple_list_item_1, listIngredients));
+
+        arrayIngredient.add(newIngredient);
+        lvIngredients.setAdapter(adapterIngredient);
         ingredientReset();
     }
     public void ingredientReset() { //Resets the ingredient input fields to blank
@@ -89,8 +95,16 @@ public class MainActivity extends AppCompatActivity {
         newIngredient = null;
     }
     public void recipeReset() { //Resets the recipe input fields and the list to blank
-        ingredientList.setAdapter(null); //Causes a crash when a second recipe is added????
-        listIngredients = null;
+        //lvIngredients.setAdapter(null); //Causes a crash when a second recipe is added????
         newName.setText(null);
+        newServing.setText(null);
+        newRecipe = null;
+
+        newRecipe = new Recipe(); //recycles newRecipe instance
+
+        //clears the ingredients array and creates a new adapter
+        arrayIngredient.clear();
+        adapterIngredient = new ArrayAdapter<Ingredient>(this, android.R.layout.simple_list_item_1, arrayIngredient);
+        lvIngredients.setAdapter(adapterIngredient);
     }
 }
