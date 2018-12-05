@@ -13,8 +13,9 @@ public class RecipePageActivity extends AppCompatActivity {
     private TextView recipeName, recipeView;
     private EditText servings;
     private Recipe recipeToPrint;
+    private Recipe recipeToFavourite;
     CheckBox checkBox;
-    private boolean iCheckBox;
+
 
 
 
@@ -49,29 +50,31 @@ public class RecipePageActivity extends AppCompatActivity {
 
     /**
      *
-     * Method returns iCheckBox=0 if the favourites button is unchecked
-     * Method returns iCheckBox=1 if the favourites button is checked
+     * Method returns iCheckBox=false if the favourites button is unchecked
+     * Method returns iCheckBox=true if the favourites button is checked
      * @return
      */
-    public boolean CheckFavourites() {
+    public void CheckFavourites() {
 
         if (checkBox.isChecked()) {
-            return iCheckBox = true;
+             recipeToPrint.setFavourite(true);
         }
         else {
-            return iCheckBox = false;
+            recipeToPrint.setFavourite(false);
         }
     }
 
-
+    /**
+     * Adds the recipe to the Favourites ArrayList when the CheckBox is ticked
+     * @param view
+     */
     public void onClickFavourites(View view) {
         CheckFavourites();
+        Recipe rFave1 = new Recipe();
+        rFave1.addIngredient(new Ingredient(1, "Slice", "rye bread"));
+        FavouriteList.getInstance().addFavouriteRecipe(rFave1);
     }
 
-    //getter for favourite value
-    public boolean getiCheckBox() {
-        return this.iCheckBox;
-    }
 
 
     public void updateUI() {

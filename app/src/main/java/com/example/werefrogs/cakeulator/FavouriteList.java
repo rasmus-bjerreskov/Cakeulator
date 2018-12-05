@@ -4,21 +4,24 @@ import java.util.ArrayList;
 
 class FavouriteList {
     private static final FavouriteList ourInstance = new FavouriteList();
-    private ArrayList<FavouriteList> favouriteList;
+    private ArrayList<Recipe> favouriteList;
 
     static FavouriteList getInstance() {
         return ourInstance;
     }
 
     private FavouriteList() {
-        this.favouriteList = new ArrayList<FavouriteList>();
+        this.favouriteList = new ArrayList<Recipe>();
     }
     /**
      * returns array of favourites
      * @return
      */
-    public ArrayList<FavouriteList> getFavouriteList() {
+    public ArrayList<Recipe> getFavouriteList() {
         return this.favouriteList;
+    }
+    public void addFavouriteRecipe(Recipe rfav) {
+        this.favouriteList.add(rfav);
     }
 
 }
