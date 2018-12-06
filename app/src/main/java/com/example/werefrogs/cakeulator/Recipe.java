@@ -77,6 +77,10 @@ public class Recipe {
         this.isFavourite = isFavourite;
     }
 
+    public boolean getFavourite(boolean isFavourite) {
+        return isFavourite;
+    }
+
     /**
      * @return
      */

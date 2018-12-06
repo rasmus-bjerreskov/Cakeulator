@@ -71,13 +71,16 @@ public class RecipePageActivity extends AppCompatActivity {
      * Adds the recipe to the Favourites ArrayList when the CheckBox is ticked
      * @param view
      */
+
     public void onClickFavourites(View view) {
         CheckFavourites();
-        Recipe rFave1 = new Recipe();
-        rFave1.addIngredient(new Ingredient(1, "Slice", "rye bread"));
-        FavouriteList.getInstance().addFavouriteRecipe(rFave1);
-    }
+        if (recipeToPrint.getFavourite(true)) {
 
+            Recipe recipeFavourite = new Recipe();
+            recipeFavourite.addIngredient(new Ingredient(1, "Slice", "rye bread"));
+            FavouriteList.getInstance().addFavouriteRecipe(recipeFavourite);
+        }
+    }
 
 
     public void updateUI() {
