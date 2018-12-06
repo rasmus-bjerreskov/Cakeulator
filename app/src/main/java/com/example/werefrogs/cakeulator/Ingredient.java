@@ -1,9 +1,14 @@
 package com.example.werefrogs.cakeulator;
 
+import java.text.DecimalFormat;
+
 public class Ingredient {
     private double amount;
     private String unit;
     private String item;
+
+    //from https://stackoverflow.com/a/7678994
+    public static DecimalFormat formatter = new DecimalFormat(); //public static because we only need one instance for all classes
 
     /**
      * @param amount
@@ -79,6 +84,6 @@ public class Ingredient {
     }
 
     public String toString() {
-        return this.amount + getStrings();
+        return formatter.format(this.amount) + getStrings();
     }
 }

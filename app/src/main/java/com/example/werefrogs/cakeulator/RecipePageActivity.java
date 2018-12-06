@@ -7,6 +7,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import static com.example.werefrogs.cakeulator.Ingredient.formatter;
 import static com.example.werefrogs.cakeulator.RecipeLibraryActivity.EXTRA;
 
 public class RecipePageActivity extends AppCompatActivity {
@@ -93,7 +94,7 @@ public class RecipePageActivity extends AppCompatActivity {
 
         for (Ingredient j : recipeToPrint.getIngredients()) {
             double newServings = j.getAmount() * multiplier;
-            recipePrint += newServings + j.getStrings() + "\n";
+            recipePrint += formatter.format(newServings) + j.getStrings() + "\n";
         }
         recipeView.setText(recipePrint);
     }
