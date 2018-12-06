@@ -23,6 +23,9 @@ class FavouriteList {
     public void addFavouriteRecipe(Recipe rfav) {
         this.favouriteList.add(rfav);
     }
+    public void removeFavouriteRecipe(Recipe rfav) {
+        this.favouriteList.remove(rfav);
+    }
     /**
      * returns array at index
      * @param i

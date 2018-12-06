@@ -7,6 +7,8 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import static com.example.werefrogs.cakeulator.RecipeLibraryActivity.EXTRA;
 
 public class RecipePageActivity extends AppCompatActivity {
@@ -15,7 +17,8 @@ public class RecipePageActivity extends AppCompatActivity {
     private Recipe recipeToPrint;
     private Recipe recipeToFavourite;
     CheckBox checkBox;
-
+    public String FavouriteName;
+    public int FavouriteServings;
 
 
     @Override
@@ -74,14 +77,37 @@ public class RecipePageActivity extends AppCompatActivity {
 
     public void onClickFavourites(View view) {
         CheckFavourites();
+        setFavouriteName();
+        setFavouriteServings();
         if (recipeToPrint.getFavourite(true)) {
-
             Recipe recipeFavourite = new Recipe();
+
+            recipeFavourite.setName(FavouriteName);
+            recipeFavourite.setServings(FavouriteServings);
             recipeFavourite.addIngredient(new Ingredient(1, "Slice", "rye bread"));
             FavouriteList.getInstance().addFavouriteRecipe(recipeFavourite);
+        }else{
+
+            //FavouriteList.getInstance().removeFavouriteRecipe();
         }
     }
 
+    /*
+    public ArrayList FavouriteIngredients;
+    public void setFavouriteIngredients() {
+        this.FavouriteIngredients = recipeToPrint.getIngredients();
+    }
+    */
+
+    //favourite setters
+    public void setFavouriteName() {
+        this.FavouriteName = recipeToPrint.getName();
+    }
+    public void setFavouriteServings() {
+        this.FavouriteServings = recipeToPrint.getServings();
+    }
+
+    //favourite setters end
 
     public void updateUI() {
         String recipePrint = "";
