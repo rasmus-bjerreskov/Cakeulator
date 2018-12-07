@@ -1,5 +1,6 @@
 package com.example.werefrogs.cakeulator;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -27,6 +29,10 @@ public class MainActivity extends AppCompatActivity {
     ListView lvIngredients;
     ArrayAdapter<Ingredient> adapterIngredient;
     ArrayList<Ingredient> arrayIngredient = new ArrayList<Ingredient>();
+    private static final String PREF = "TestPref";
+    private static final String SAVE_RECIPE = "saveRecipe_key";
+
+    public SharedPreferences recipePref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,16 +45,17 @@ public class MainActivity extends AppCompatActivity {
         lvIngredients = findViewById(R.id.lv_ingredients);
         newServing = findViewById(R.id.et_amount);
 
+        recipePref = getSharedPreferences(PREF, Activity.MODE_PRIVATE);
+
         newRecipe = new Recipe();
         adapterIngredient = new ArrayAdapter<Ingredient>(this, android.R.layout.simple_list_item_1, arrayIngredient);
+        loadRecipes(this);
 
     }
-
 
     public void buttonPressed_toLibrary(View v) { //Switches activities (Main to Recipe Library)
         Intent intent = new Intent(this, RecipeLibraryActivity.class);
         startActivity(intent);
-
 
     }
 
@@ -110,19 +117,19 @@ public class MainActivity extends AppCompatActivity {
         lvIngredients.setAdapter(adapterIngredient);
     }
     public void saveRecipes(Context context) {
-        SharedPreferences appSharedPrefs = PreferenceManager  .getDefaultSharedPreferences(context.getApplicationContext());
-        SharedPreferences.Editor prefsEditor = appSharedPrefs.edit();
+        SharedPreferences.Editor prefsEditor = recipePref.edit();
         Gson gson = new Gson();
         String jsonString = gson.toJson(RecipeList.getInstance());
-        prefsEditor.putString("currentTasks", jsonString);
+        prefsEditor.putString("currentRecipes", jsonString);
         prefsEditor.commit();
     }
-    public ArrayList<Recipe> loadRecipes(Context context) {
-        SharedPreferences appSharedPrefs = PreferenceManager .getDefaultSharedPreferences(context.getApplicationContext());
+    public void loadRecipes(Context context) {
         Gson gson = new Gson();
-        String json = appSharedPrefs.getString("currentTasks", "");
-        ArrayList<RecipeList.getInstance()> = gson.fromJson(json, new TypeToken<ArrayList<Recipe>>(){}.getType());
-        return tasks;
+        String json = recipePref.getString("currentRecipes", "");
+        Type listType = new TypeToken<ArrayList<Recipe>>(){}.getType();
+        ArrayList<Recipe> testlist;
+        testlist = gson.fromJson(json, new TypeToken<ArrayList<Recipe>>(){}.getType());
+        RecipeList.getInstance().setRecipes(testlist);
     }
 
     public void onPause() {
