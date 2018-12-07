@@ -88,8 +88,7 @@ public class RecipePageActivity extends AppCompatActivity {
             recipeFavourite.addIngredient(new Ingredient(1, "Slice", "rye bread"));
             FavouriteList.getInstance().addFavouriteRecipe(recipeFavourite);
         }else{
-
-            //FavouriteList.getInstance().removeFavouriteRecipe();
+            //FavouriteList.getInstance().removeFavouriteRecipe(); -- Remove function. Indexing of Favourite recipes needed.
         }
     }
 
