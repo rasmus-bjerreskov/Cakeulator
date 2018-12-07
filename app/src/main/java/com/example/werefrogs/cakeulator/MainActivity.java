@@ -2,6 +2,8 @@ package com.example.werefrogs.cakeulator;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +12,9 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -36,11 +41,15 @@ public class MainActivity extends AppCompatActivity {
 
         newRecipe = new Recipe();
         adapterIngredient = new ArrayAdapter<Ingredient>(this, android.R.layout.simple_list_item_1, arrayIngredient);
+
     }
+
 
     public void buttonPressed_toLibrary(View v) { //Switches activities (Main to Recipe Library)
         Intent intent = new Intent(this, RecipeLibraryActivity.class);
         startActivity(intent);
+
+
     }
 
     public void buttonPressed_addToLibrary(View v) { //Adds given recipe to the library
@@ -99,5 +108,26 @@ public class MainActivity extends AppCompatActivity {
         arrayIngredient.clear();
         adapterIngredient = new ArrayAdapter<Ingredient>(this, android.R.layout.simple_list_item_1, arrayIngredient);
         lvIngredients.setAdapter(adapterIngredient);
+    }
+    public void saveRecipes(Context context) {
+        SharedPreferences appSharedPrefs = PreferenceManager  .getDefaultSharedPreferences(context.getApplicationContext());
+        SharedPreferences.Editor prefsEditor = appSharedPrefs.edit();
+        Gson gson = new Gson();
+        String jsonString = gson.toJson(RecipeList.getInstance());
+        prefsEditor.putString("currentTasks", jsonString);
+        prefsEditor.commit();
+    }
+    public ArrayList<Recipe> loadRecipes(Context context) {
+        SharedPreferences appSharedPrefs = PreferenceManager .getDefaultSharedPreferences(context.getApplicationContext());
+        Gson gson = new Gson();
+        String json = appSharedPrefs.getString("currentTasks", "");
+        ArrayList<RecipeList.getInstance()> = gson.fromJson(json, new TypeToken<ArrayList<Recipe>>(){}.getType());
+        return tasks;
+    }
+
+    public void onPause() {
+        super.onPause();
+        saveRecipes(this);
+
     }
 }
