@@ -13,6 +13,8 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Array;
+import java.lang.reflect.Type;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -42,10 +44,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void buttonPressed_toLibrary(View v) { //Switches activities (Main to Recipe Library)
         Gson gson = new Gson();
-        //String jsonString = gson.toJson(RecipeList.getInstance().getRecipeList());
-        //Log.d("saved", jsonString);
-        String jsonString = "[{\"ingredients\":[{\"amount\":1.0,\"item\":\"cat\",\"unit\":\"g\"}],\"isFavourite\":false,\"name\":\"test\",\"servings\":2},{\"ingredients\":[{\"amount\":3.0,\"item\":\"hens\",\"unit\":\"\"}],\"isFavourite\":false,\"name\":\"test2\",\"servings\":11}]";
-        RecipeList.getInstance().setRecipes(gson.fromJson(jsonString, new TypeToken<ArrayList<Recipe>>(){}.getType()));
+        String jsonString = gson.toJson(RecipeList.getInstance().getRecipeList());
+        Log.d("saved", jsonString);
+        //String jsonString = "[{\"ingredients\":[{\"amount\":1.0,\"item\":\"cat\",\"unit\":\"g\"}],\"isFavourite\":false,\"name\":\"test\",\"servings\":2},{\"ingredients\":[{\"amount\":3.0,\"item\":\"hens\",\"unit\":\"\"}],\"isFavourite\":false,\"name\":\"test2\",\"servings\":11}]";
+        Type listType = new TypeToken<ArrayList<Recipe>>(){}.getType();
+        ArrayList<Recipe> testlist;
+        testlist = gson.fromJson(jsonString, listType);
+        RecipeList.getInstance().setRecipes(testlist);
 
         Intent intent = new Intent(this, RecipeLibraryActivity.class);
         startActivity(intent);
