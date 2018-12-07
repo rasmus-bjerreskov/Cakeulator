@@ -2,6 +2,7 @@ package com.example.werefrogs.cakeulator;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -27,6 +29,10 @@ public class MainActivity extends AppCompatActivity {
     ArrayAdapter<Ingredient> adapterIngredient;
     ArrayList<Ingredient> arrayIngredient = new ArrayList<Ingredient>();
 
+    private SharedPreferences recipePref;
+    private static final String PREF = "recipePref";
+    private static final String SAVE_RECIPES = "saveRecipe_key";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,22 +46,12 @@ public class MainActivity extends AppCompatActivity {
 
         newRecipe = new Recipe();
         adapterIngredient = new ArrayAdapter<Ingredient>(this, android.R.layout.simple_list_item_1, arrayIngredient);
+
+        recipePref = getSharedPreferences(PREF, MODE_PRIVATE);
+        loadRecipes();
     }
 
     public void buttonPressed_toLibrary(View v) { //Switches activities (Main to Recipe Library)
-        Gson gson = new Gson();
-        String jsonString = gson.toJson(RecipeList.getInstance().getRecipeList());
-        Log.d("saved", jsonString);
-
-        //SOURCE
-        Type listType = new TypeToken<ArrayList<Recipe>>(){}.getType();
-
-        /*
-        retrieves saved data
-        https://www.tutorialspoint.com/gson/gson_serialization_examples.htm
-         */
-        RecipeList.getInstance().setRecipes((ArrayList<Recipe>) gson.fromJson(jsonString, listType));
-
         Intent intent = new Intent(this, RecipeLibraryActivity.class);
         startActivity(intent);
     }
@@ -117,4 +113,31 @@ public class MainActivity extends AppCompatActivity {
         adapterIngredient = new ArrayAdapter<Ingredient>(this, android.R.layout.simple_list_item_1, arrayIngredient);
         lvIngredients.setAdapter(adapterIngredient);
     }
+
+    public void saveRecipes() {
+        SharedPreferences.Editor prefsEditor = recipePref.edit();
+        Gson gson = new Gson();
+        String jsonString = gson.toJson(RecipeList.getInstance().getRecipeList());
+        Log.d("saved", jsonString);
+        prefsEditor.putString(SAVE_RECIPES, jsonString);
+        prefsEditor.commit();
+    }
+    public void loadRecipes() {
+        //https://medium.com/@evancheese1/shared-preferences-saving-arraylists-and-more-with-json-and-gson-java-5d899c8b0235
+        Type listType = new TypeToken<ArrayList<Recipe>>() {
+        }.getType();
+
+        /*
+        retrieves saved data
+        https://www.tutorialspoint.com/gson/gson_serialization_examples.htm
+         */
+        Gson gson = new Gson();
+        String json = recipePref.getString(SAVE_RECIPES, "[]");
+        RecipeList.getInstance().setRecipes((ArrayList<Recipe>) gson.fromJson(json, listType));
+    }
+    public void onStop() {
+        super.onStop();
+        saveRecipes();
+    }
 }
+
