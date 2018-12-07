@@ -46,11 +46,15 @@ public class MainActivity extends AppCompatActivity {
         Gson gson = new Gson();
         String jsonString = gson.toJson(RecipeList.getInstance().getRecipeList());
         Log.d("saved", jsonString);
-        //String jsonString = "[{\"ingredients\":[{\"amount\":1.0,\"item\":\"cat\",\"unit\":\"g\"}],\"isFavourite\":false,\"name\":\"test\",\"servings\":2},{\"ingredients\":[{\"amount\":3.0,\"item\":\"hens\",\"unit\":\"\"}],\"isFavourite\":false,\"name\":\"test2\",\"servings\":11}]";
+
+        //SOURCE
         Type listType = new TypeToken<ArrayList<Recipe>>(){}.getType();
-        ArrayList<Recipe> testlist;
-        testlist = gson.fromJson(jsonString, listType);
-        RecipeList.getInstance().setRecipes(testlist);
+
+        /*
+        retrieves saved data
+        https://www.tutorialspoint.com/gson/gson_serialization_examples.htm
+         */
+        RecipeList.getInstance().setRecipes((ArrayList<Recipe>) gson.fromJson(jsonString, listType));
 
         Intent intent = new Intent(this, RecipeLibraryActivity.class);
         startActivity(intent);
