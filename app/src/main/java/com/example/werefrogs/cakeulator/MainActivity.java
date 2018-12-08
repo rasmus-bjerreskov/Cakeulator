@@ -79,7 +79,6 @@ public class MainActivity extends AppCompatActivity {
             servingToAdd = Integer.parseInt(newServing.getText().toString());
         }
         newRecipe.setServings(servingToAdd);
-        recipeReset();
 
         //Sets name and adds recipe to master (singleton) list
         String nameToAdd = newName.getText().toString();
@@ -87,6 +86,8 @@ public class MainActivity extends AppCompatActivity {
         newRecipe.setName(nameToAdd);
         Log.d("getName", newRecipe.getName());
         RecipeList.getInstance().addRecipe(newRecipe);
+
+        recipeReset();
     }
 
     public void buttonPressed_toLibrary(View v) { //Switches activities (Main to Recipe Library)
