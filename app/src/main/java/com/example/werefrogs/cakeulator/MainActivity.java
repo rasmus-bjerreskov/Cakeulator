@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     Ingredient newIngredient;
     ListView lvIngredients;
     ArrayAdapter<Ingredient> adapterIngredient;
-    ArrayList<Ingredient> arrayIngredient = new ArrayList<Ingredient>();
+    ArrayList<Ingredient> arrayIngredient; //= new ArrayList<Ingredient>();
 
     private SharedPreferences recipePref;
     private static final String PREF = "recipePref";
@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         newServing = findViewById(R.id.et_amount);
 
         newRecipe = new Recipe();
+        arrayIngredient = newRecipe.getIngredients();
         adapterIngredient = new ArrayAdapter<Ingredient>(this, android.R.layout.simple_list_item_1, arrayIngredient);
 
         recipePref = getSharedPreferences(PREF, MODE_PRIVATE);
@@ -59,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         newIngredient = new Ingredient(amountToAdd, unitToAdd, itemToAdd);
         newRecipe.addIngredient(newIngredient);
 
-        arrayIngredient.add(newIngredient);
+        //arrayIngredient.add(newIngredient);
         lvIngredients.setAdapter(adapterIngredient);
         ingredientReset();
     }
@@ -79,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
             servingToAdd = Integer.parseInt(newServing.getText().toString());
         }
         newRecipe.setServings(servingToAdd);
-        recipeReset();
 
         //Sets name and adds recipe to master (singleton) list
         String nameToAdd = newName.getText().toString();
@@ -87,8 +87,10 @@ public class MainActivity extends AppCompatActivity {
         newRecipe.setName(nameToAdd);
         Log.d("getName", newRecipe.getName());
         RecipeList.getInstance().addRecipe(newRecipe);
-    }
 
+        recipeReset();
+
+    }
     public void buttonPressed_toLibrary(View v) { //Switches activities (Main to Recipe Library)
         Intent intent = new Intent(this, RecipeLibraryActivity.class);
         startActivity(intent);
@@ -105,11 +107,12 @@ public class MainActivity extends AppCompatActivity {
         newName.setText(null);
         newServing.setText(null);
         newRecipe = null;
+        arrayIngredient = null;
 
         newRecipe = new Recipe(); //recycles newRecipe instance
 
         //clears the ingredients array and creates a new adapter
-        arrayIngredient.clear();
+        arrayIngredient = newRecipe.getIngredients();
         adapterIngredient = new ArrayAdapter<Ingredient>(this, android.R.layout.simple_list_item_1, arrayIngredient);
         lvIngredients.setAdapter(adapterIngredient);
     }
