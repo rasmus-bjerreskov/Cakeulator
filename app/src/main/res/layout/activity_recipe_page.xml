@@ -8,6 +8,7 @@
     android:clickable="true"
     android:focusable="true"
     tools:context=".RecipePageActivity">
+    <!-- https://stackoverflow.com/a/47729775-->
 
     <TextView
         android:id="@+id/tv_recipe"
@@ -61,7 +62,6 @@
         android:layout_marginTop="40dp"
         android:ems="10"
         android:inputType="number"
-        android:text="1"
         app:layout_constraintEnd_toStartOf="@+id/tv_servings"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/tv_makes"
@@ -88,6 +88,7 @@
         android:layout_marginEnd="14dp"
         android:layout_marginRight="14dp"
         android:text="@string/cb_favourites"
+        android:onClick="onClickFavourites"
         app:layout_constraintBaseline_toBaselineOf="@+id/tv_recipeName"
         app:layout_constraintEnd_toEndOf="parent" />
 

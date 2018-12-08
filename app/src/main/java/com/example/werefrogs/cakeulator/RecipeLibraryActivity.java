@@ -3,15 +3,20 @@ package com.example.werefrogs.cakeulator;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 
 public class RecipeLibraryActivity extends AppCompatActivity {
     public static final String TAG = "Debug_key";
     public static final String EXTRA = "com.example.wereFrogs.Cakeulator";
+    EditText searchLibrary;
+    ArrayAdapter<Recipe> adapter;
 
 
     @Override
@@ -19,12 +24,14 @@ public class RecipeLibraryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_library);
 
-
-
+        searchLibrary = (EditText) findViewById(R.id.et_search);
         ListView lv = findViewById(R.id.lv_Recipes);
-        lv.setAdapter(new ArrayAdapter<Recipe>
+        adapter = new ArrayAdapter<Recipe>
                 (this, android.R.layout.simple_list_item_1,
-                        RecipeList.getInstance().getRecipeList()));
+                        RecipeList.getInstance().getRecipeList());
+
+        //Adapter for the Recipe Array list made
+        lv.setAdapter(adapter);
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             /**
@@ -41,10 +48,34 @@ public class RecipeLibraryActivity extends AppCompatActivity {
                 nextActivity.putExtra(EXTRA, i);
                 startActivity(nextActivity);
             }
-
         });
+        searchLibrary.addTextChangedListener(new TextWatcher() {
 
+            /**
+             * The program listens and responds to changes in the EditText field
+             * @param cs
+             * @param arg1
+             * @param arg2
+             * @param arg3
+             */
+            @Override
+            public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
+                RecipeLibraryActivity.this.adapter.getFilter().filter(cs);
+            }
 
+            @Override
+            public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
+            }
 
+            @Override
+            public void afterTextChanged(Editable arg0) {
+            }
+            /* makes sure that the sequence of characters in the search field is the same as in the
+            recipe list view
+             */
+         // The search function was made using the tutorial and source code from http://aboutyusata.blogspot.com/2015/07/android-adding-search-functionality-to.html
+        });
     }
 }
+
+

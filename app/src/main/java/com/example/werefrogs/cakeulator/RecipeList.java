@@ -14,13 +14,16 @@ class RecipeList {
         this.recipes = new ArrayList<Recipe>();
 
     }
-
     /**
      * returns array of recipes
      * @return
      */
     public ArrayList<Recipe> getRecipeList() {
         return this.recipes;
+    }
+
+    public void setRecipes(ArrayList<Recipe> recipes) {
+        this.recipes = recipes;
     }
 
     /**

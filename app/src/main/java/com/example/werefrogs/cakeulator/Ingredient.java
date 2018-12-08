@@ -1,26 +1,36 @@
 package com.example.werefrogs.cakeulator;
 
+import java.text.DecimalFormat;
+
 public class Ingredient {
-    private int amount;
+    private double amount;
     private String unit;
-    private String ingredient;
+    private String item;
+
+    //from https://stackoverflow.com/a/7678994
+    public static DecimalFormat formatter = new DecimalFormat(); //public static because we only need one instance for all classes
 
     /**
-     *
      * @param amount
      * @param unit
-     * @param ingredient
+     * @param item
      */
-    public Ingredient(int amount, String unit, String ingredient) {
+    public Ingredient(double amount, String unit, String item) {
         this.amount = amount;
         this.unit = unit;
-        this.ingredient = ingredient;
+        this.item = item;
+    }
+
+    public Ingredient(double amount, String item) {
+        this.amount = amount;
+        this.unit = "";
+        this.item = item;
     }
 
     /**
      * @return
      */
-    public int getAmount() {
+    public double getAmount() {
         return amount;
     }
 
@@ -34,16 +44,17 @@ public class Ingredient {
     /**
      * @return
      */
-    public String getIngredient() {
-        return ingredient;
+    public String getItem() {
+        return item;
     }
 
     /**
      * @param amount
      */
-    public void setAmount(int amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
+
 
     /**
      * @param unit
@@ -53,25 +64,26 @@ public class Ingredient {
     }
 
     /**
-     * @param ingredient
+     * @param item
      */
-    public void setIngredient(String ingredient) {
-        this.ingredient = ingredient;
+    public void setItem(String item) {
+        this.item = item;
     }
 
     /**
-     * returns unit and ingredient name
+     * returns unit and item name
+     *
      * @return
      */
     public String getStrings() {
         if (this.unit.isEmpty()) {
-            return " " + this.ingredient;
+            return " " + this.item;
         } else {
-            return " " + this.unit + " " + this.ingredient;
+            return " " + this.unit + " " + this.item;
         }
     }
 
     public String toString() {
-        return "" + this.amount + " " + this.unit + " " + this.ingredient; //problem: two spaces if no unit ("2  eggs")
+        return formatter.format(this.amount) + getStrings();
     }
 }
