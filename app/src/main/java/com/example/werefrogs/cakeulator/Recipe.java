@@ -55,6 +55,10 @@ public class Recipe {
         this.servings = servings;
     }
 
+    public void setFavourite(boolean isFavourite) {
+        this.isFavourite = isFavourite;
+    }
+
     /**
      * returns the arrayList object part of the recipe
      *
@@ -73,9 +77,6 @@ public class Recipe {
     /**
      * @return
      */
-    public void setFavourite(boolean isFavourite) {
-        this.isFavourite = isFavourite;
-    }
 
     public boolean getFavourite(boolean isFavourite) {
         return isFavourite;
