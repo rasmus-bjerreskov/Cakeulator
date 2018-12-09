@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Item Deleted", Toast.LENGTH_LONG).show();
 
                 return true;
+                //Made using tutorial from: https://www.android-examples.com/remove-selected-listview-item-in-android-on-long-click-listener/
             }
 
         });
