@@ -49,6 +49,14 @@ public class MainActivity extends AppCompatActivity {
         adapterIngredient = new ArrayAdapter<Ingredient>(this, android.R.layout.simple_list_item_1, arrayIngredient);
         lvIngredients.setAdapter(adapterIngredient);
         lvIngredients.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            /**
+             *
+             * @param parent
+             * @param view
+             * @param position
+             * @param id
+             * @return
+             */
 
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view,
@@ -119,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
         newIngredient = null;
     }
 
-    public void recipeReset() { //Resets the recipe input fields and the list to blank
+    public void recipeReset() { //Resets the recipe name input field and the list to blank
         newName.setText(null);
         newServing.setText(null);
         newRecipe = null;
