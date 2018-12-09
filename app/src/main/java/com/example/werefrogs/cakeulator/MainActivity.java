@@ -51,36 +51,6 @@ public class MainActivity extends AppCompatActivity {
         loadRecipes();
     }
 
-    public void buttonPressed_toLibrary(View v) { //Switches activities (Main to Recipe Library)
-        Intent intent = new Intent(this, RecipeLibraryActivity.class);
-        startActivity(intent);
-    }
-
-    public void buttonPressed_addToLibrary(View v) { //Adds given recipe to the library
-        //Makes a toast (short popup text) whenever the "Add to Library" button is pressed
-        Context context = getApplicationContext();
-        CharSequence text = "Recipe added!";
-        int duration = Toast.LENGTH_SHORT;
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
-
-        //User inputted recipe name
-        String nameToAdd = newName.getText().toString();
-        Log.d("setName", nameToAdd);
-        newRecipe.setName(nameToAdd);
-        Log.d("getName", newRecipe.getName());
-        RecipeList.getInstance().addRecipe(newRecipe);
-
-        //User inputted servings
-        int servingToAdd = 1;
-        if (!newServing.getText().toString().isEmpty()) {
-            //servings defaults to 1
-            servingToAdd = Integer.parseInt(newServing.getText().toString());
-        }
-        newRecipe.setServings(servingToAdd);
-        recipeReset();
-    }
-
     public void buttonPressed_addIngredient(View v) { //Adds ingredient to the List View
         double amountToAdd = Double.parseDouble(newAmount.getText().toString());
         String unitToAdd = newUnit.getText().toString();
@@ -92,6 +62,37 @@ public class MainActivity extends AppCompatActivity {
         arrayIngredient.add(newIngredient);
         lvIngredients.setAdapter(adapterIngredient);
         ingredientReset();
+    }
+
+    public void buttonPressed_addToLibrary(View v) { //Adds given recipe to the library
+        //Makes a toast (short popup text) whenever the "Add to Library" button is pressed
+        Context context = getApplicationContext();
+        CharSequence text = "Recipe added!";
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
+
+        //Sets servings
+        int servingToAdd = 1;
+        if (!newServing.getText().toString().isEmpty()) {
+            //servings defaults to 1
+            servingToAdd = Integer.parseInt(newServing.getText().toString());
+        }
+        newRecipe.setServings(servingToAdd);
+
+        //Sets name and adds recipe to master (singleton) list
+        String nameToAdd = newName.getText().toString();
+        Log.d("setName", nameToAdd);
+        newRecipe.setName(nameToAdd);
+        Log.d("getName", newRecipe.getName());
+        RecipeList.getInstance().addRecipe(newRecipe);
+
+        recipeReset();
+    }
+
+    public void buttonPressed_toLibrary(View v) { //Switches activities (Main to Recipe Library)
+        Intent intent = new Intent(this, RecipeLibraryActivity.class);
+        startActivity(intent);
     }
 
     public void ingredientReset() { //Resets the ingredient input fields to blank
@@ -135,6 +136,7 @@ public class MainActivity extends AppCompatActivity {
         String json = recipePref.getString(SAVE_RECIPES, "[]");
         RecipeList.getInstance().setRecipes((ArrayList<Recipe>) gson.fromJson(json, listType));
     }
+
     public void onStop() {
         super.onStop();
         saveRecipes();
