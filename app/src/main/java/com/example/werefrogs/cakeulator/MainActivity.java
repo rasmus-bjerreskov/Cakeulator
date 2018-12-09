@@ -25,7 +25,7 @@ import java.lang.reflect.Type;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity {
 
     EditText newName, newAmount, newUnit, newItem, newServing;
     Recipe newRecipe;
@@ -166,6 +166,7 @@ public class MainActivity extends AppCompatActivity{
         prefsEditor.putString(SAVE_RECIPES, jsonString);
         prefsEditor.commit();
     }
+
     public void loadRecipes() {
         //https://medium.com/@evancheese1/shared-preferences-saving-arraylists-and-more-with-json-and-gson-java-5d899c8b0235
         Type listType = new TypeToken<ArrayList<Recipe>>() {
@@ -184,19 +185,6 @@ public class MainActivity extends AppCompatActivity{
         super.onStop();
         saveRecipes();
     }
-    public void showNoticeDialog() {
-        DialogFragment dialog = new NoticeDialogFragment();
-        dialog.show(getSupportFragmentManager(), "NoticeDialogFragment");
-    }
-    public void onDialogPositiveClick(DialogFragment dialog) {
-
-    }
-    public void onDialogNegativeClick(DialogFragment dialog) {
-
-    }
-    public void confirmDelete() {
-        DialogFragment newFragment = new DeleteDialogFragment();
-        newFragment.show(getSupportFragmentManager(), "delete");
-    }
 }
+
 
