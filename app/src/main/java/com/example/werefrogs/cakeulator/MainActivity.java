@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -46,9 +47,24 @@ public class MainActivity extends AppCompatActivity {
 
         newRecipe = new Recipe();
         adapterIngredient = new ArrayAdapter<Ingredient>(this, android.R.layout.simple_list_item_1, arrayIngredient);
+        lvIngredients.setAdapter(adapterIngredient);
+        lvIngredients.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view,
+                                           int position, long id) {
+                arrayIngredient.remove(position);
+                adapterIngredient.notifyDataSetChanged();
+
+                Toast.makeText(MainActivity.this, "Item Deleted", Toast.LENGTH_LONG).show();
+
+                return true;
+            }
+
+        });
         recipePref = getSharedPreferences(PREF, MODE_PRIVATE);
         loadRecipes();
+
     }
 
     public void buttonPressed_addIngredient(View v) { //Adds ingredient to the List View

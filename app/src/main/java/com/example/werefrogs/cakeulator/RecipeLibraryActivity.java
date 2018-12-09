@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class RecipeLibraryActivity extends AppCompatActivity {
     public static final String TAG = "Debug_key";
@@ -48,6 +49,20 @@ public class RecipeLibraryActivity extends AppCompatActivity {
                 nextActivity.putExtra(EXTRA, i);
                 startActivity(nextActivity);
             }
+        });
+        lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view,
+                                           int position, long id) {
+                RecipeList.getInstance().getRecipeList().remove(position);
+                adapter.notifyDataSetChanged();
+
+                Toast.makeText(RecipeLibraryActivity.this, "Item Deleted", Toast.LENGTH_LONG).show();
+
+                return true;
+            }
+
         });
         searchLibrary.addTextChangedListener(new TextWatcher() {
 
