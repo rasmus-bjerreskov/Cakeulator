@@ -16,24 +16,6 @@ public class Recipe {
     }
 
     /**
-     * creates empty recipe with only a name
-     *
-     * @param name
-     */
-    public Recipe(String name) {
-        this.name = name;
-        this.servings = getServings();
-        this.ingredients = new ArrayList<Ingredient>();
-        this.isFavourite = false;
-    }
-
-    public Recipe(String name, int servings) {
-        this.name = name;
-        this.servings = servings;
-        this.ingredients = new ArrayList<Ingredient>();
-    }
-
-    /**
      * adds an ingredient object to the array
      *
      * @param ingredient

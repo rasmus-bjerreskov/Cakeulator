@@ -1,6 +1,5 @@
 package com.example.werefrogs.cakeulator;
 
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
