@@ -16,7 +16,7 @@ public class RecipeLibraryActivity extends AppCompatActivity {
     public static final String TAG = "Debug_key";
     public static final String EXTRA = "com.example.wereFrogs.Cakeulator";
     EditText searchLibrary;
-    ArrayAdapter<Recipe> adapter;
+    RecipeListAdapter adapter;
 
 
     @Override
@@ -26,7 +26,7 @@ public class RecipeLibraryActivity extends AppCompatActivity {
 
         searchLibrary = (EditText) findViewById(R.id.et_search);
         ListView lv = findViewById(R.id.lv_Recipes);
-        adapter = new ArrayAdapter<Recipe>
+        adapter = new RecipeListAdapter
                 (this, android.R.layout.simple_list_item_1,
                         RecipeList.getInstance().getRecipeList());
 
