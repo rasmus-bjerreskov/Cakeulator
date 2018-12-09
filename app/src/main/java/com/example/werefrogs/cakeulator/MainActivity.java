@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -46,39 +47,25 @@ public class MainActivity extends AppCompatActivity {
 
         newRecipe = new Recipe();
         adapterIngredient = new ArrayAdapter<Ingredient>(this, android.R.layout.simple_list_item_1, arrayIngredient);
+        lvIngredients.setAdapter(adapterIngredient);
+        lvIngredients.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view,
+                                           int position, long id) {
+                arrayIngredient.remove(position);
+                adapterIngredient.notifyDataSetChanged();
+
+                Toast.makeText(MainActivity.this, "Item Deleted", Toast.LENGTH_LONG).show();
+
+                return true;
+                //Made using tutorial from: https://www.android-examples.com/remove-selected-listview-item-in-android-on-long-click-listener/
+            }
+
+        });
         recipePref = getSharedPreferences(PREF, MODE_PRIVATE);
         loadRecipes();
-    }
 
-    public void buttonPressed_toLibrary(View v) { //Switches activities (Main to Recipe Library)
-        Intent intent = new Intent(this, RecipeLibraryActivity.class);
-        startActivity(intent);
-    }
-
-    public void buttonPressed_addToLibrary(View v) { //Adds given recipe to the library
-        //Makes a toast (short popup text) whenever the "Add to Library" button is pressed
-        Context context = getApplicationContext();
-        CharSequence text = "Recipe added!";
-        int duration = Toast.LENGTH_SHORT;
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
-
-        //User inputted recipe name
-        String nameToAdd = newName.getText().toString();
-        Log.d("setName", nameToAdd);
-        newRecipe.setName(nameToAdd);
-        Log.d("getName", newRecipe.getName());
-        RecipeList.getInstance().addRecipe(newRecipe);
-
-        //User inputted servings
-        int servingToAdd = 1;
-        if (!newServing.getText().toString().isEmpty()) {
-            //servings defaults to 1
-            servingToAdd = Integer.parseInt(newServing.getText().toString());
-        }
-        newRecipe.setServings(servingToAdd);
-        recipeReset();
     }
 
     public void buttonPressed_addIngredient(View v) { //Adds ingredient to the List View
@@ -92,6 +79,37 @@ public class MainActivity extends AppCompatActivity {
         arrayIngredient.add(newIngredient);
         lvIngredients.setAdapter(adapterIngredient);
         ingredientReset();
+    }
+
+    public void buttonPressed_addToLibrary(View v) { //Adds given recipe to the library
+        //Makes a toast (short popup text) whenever the "Add to Library" button is pressed
+        Context context = getApplicationContext();
+        CharSequence text = "Recipe added!";
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
+
+        //Sets servings
+        int servingToAdd = 1;
+        if (!newServing.getText().toString().isEmpty()) {
+            //servings defaults to 1
+            servingToAdd = Integer.parseInt(newServing.getText().toString());
+        }
+        newRecipe.setServings(servingToAdd);
+
+        //Sets name and adds recipe to master (singleton) list
+        String nameToAdd = newName.getText().toString();
+        Log.d("setName", nameToAdd);
+        newRecipe.setName(nameToAdd);
+        Log.d("getName", newRecipe.getName());
+        RecipeList.getInstance().addRecipe(newRecipe);
+
+        recipeReset();
+    }
+
+    public void buttonPressed_toLibrary(View v) { //Switches activities (Main to Recipe Library)
+        Intent intent = new Intent(this, RecipeLibraryActivity.class);
+        startActivity(intent);
     }
 
     public void ingredientReset() { //Resets the ingredient input fields to blank
@@ -135,6 +153,7 @@ public class MainActivity extends AppCompatActivity {
         String json = recipePref.getString(SAVE_RECIPES, "[]");
         RecipeList.getInstance().setRecipes((ArrayList<Recipe>) gson.fromJson(json, listType));
     }
+
     public void onStop() {
         super.onStop();
         saveRecipes();
