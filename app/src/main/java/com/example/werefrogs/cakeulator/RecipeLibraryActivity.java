@@ -51,6 +51,14 @@ public class RecipeLibraryActivity extends AppCompatActivity {
             }
         });
         lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            /**
+             *
+             * @param parent
+             * @param view
+             * @param position
+             * @param id
+             * @return
+             */
 
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view,
