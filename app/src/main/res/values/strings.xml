@@ -9,4 +9,7 @@
     <string name="hint_enterNameRecipe">Enter the name of your recipe</string>
     <string name="hint_amount">Amount</string>
     <string name="text_favourites">Show favourites</string>
+    <string name="string_delete">Yes</string>
+    <string name="string_no">No</string>
+    <string name="string_deleteQuery">Delete?</string>
 </resources>

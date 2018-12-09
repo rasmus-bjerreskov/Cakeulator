@@ -1,11 +1,15 @@
 package com.example.werefrogs.cakeulator;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v4.app.DialogFragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -21,7 +25,7 @@ import java.lang.reflect.Type;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity{
 
     EditText newName, newAmount, newUnit, newItem, newServing;
     Recipe newRecipe;
@@ -60,9 +64,23 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view,
-                                           int position, long id) {
-                arrayIngredient.remove(position);
-                adapterIngredient.notifyDataSetChanged();
+                                           final int position, long id) {
+                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(MainActivity.this);
+                final AlertDialog alertDialog = dialogBuilder.create();
+                dialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        arrayIngredient.remove(position);
+                        adapterIngredient.notifyDataSetChanged();
+                    }
+                });
+                dialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        alertDialog.dismiss();
+                    }
+                });
+
 
                 Toast.makeText(MainActivity.this, "Item Deleted", Toast.LENGTH_LONG).show();
 
@@ -165,6 +183,20 @@ public class MainActivity extends AppCompatActivity {
     public void onStop() {
         super.onStop();
         saveRecipes();
+    }
+    public void showNoticeDialog() {
+        DialogFragment dialog = new NoticeDialogFragment();
+        dialog.show(getSupportFragmentManager(), "NoticeDialogFragment");
+    }
+    public void onDialogPositiveClick(DialogFragment dialog) {
+
+    }
+    public void onDialogNegativeClick(DialogFragment dialog) {
+
+    }
+    public void confirmDelete() {
+        DialogFragment newFragment = new DeleteDialogFragment();
+        newFragment.show(getSupportFragmentManager(), "delete");
     }
 }
 

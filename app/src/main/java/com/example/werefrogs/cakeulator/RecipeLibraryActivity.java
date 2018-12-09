@@ -1,6 +1,9 @@
 package com.example.werefrogs.cakeulator;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -37,6 +40,7 @@ public class RecipeLibraryActivity extends AppCompatActivity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             /**
              * Clicking recipe in list leads to its individual page
+             *
              * @param adapterView
              * @param view
              * @param i
@@ -52,7 +56,6 @@ public class RecipeLibraryActivity extends AppCompatActivity {
         });
         lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             /**
-             *
              * @param parent
              * @param view
              * @param position
@@ -77,6 +80,7 @@ public class RecipeLibraryActivity extends AppCompatActivity {
 
             /**
              * The program listens and responds to changes in the EditText field
+             *
              * @param cs
              * @param arg1
              * @param arg2
@@ -97,8 +101,9 @@ public class RecipeLibraryActivity extends AppCompatActivity {
             /* makes sure that the sequence of characters in the search field is the same as in the
             recipe list view
              */
-         // The search function was made using the tutorial and source code from http://aboutyusata.blogspot.com/2015/07/android-adding-search-functionality-to.html
+            // The search function was made using the tutorial and source code from http://aboutyusata.blogspot.com/2015/07/android-adding-search-functionality-to.html
         });
+
     }
 }
 
