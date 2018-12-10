@@ -32,6 +32,7 @@ public class RecipePageActivity extends AppCompatActivity {
         Bundle b = getIntent().getExtras();
         int i = b.getInt(EXTRA, 0);
 
+
         servings.setHint(Integer.toString(RecipeList.getInstance().getRecipe(i).getServings()));
         recipeToPrint = RecipeList.getInstance().getRecipe(i);
         recipeName.setText(RecipeList.getInstance().getRecipe(i).getName());
