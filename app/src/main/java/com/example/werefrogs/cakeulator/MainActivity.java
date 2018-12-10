@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         newUnit = findViewById(R.id.et_addUnit);
         newItem = findViewById(R.id.et_addItem);
         lvIngredients = findViewById(R.id.lv_ingredients);
-        newServing = findViewById(R.id.et_amount);
+        newServing = findViewById(R.id.et_addServings);
 
         newRecipe = new Recipe();
         adapterIngredient = new ArrayAdapter<Ingredient>(this, android.R.layout.simple_list_item_1, arrayIngredient);

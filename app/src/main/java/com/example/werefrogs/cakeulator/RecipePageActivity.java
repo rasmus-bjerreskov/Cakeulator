@@ -3,7 +3,6 @@ package com.example.werefrogs.cakeulator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -27,7 +26,7 @@ public class RecipePageActivity extends AppCompatActivity {
 
         recipeName = findViewById(R.id.tv_recipeName);
         recipeView = findViewById(R.id.tv_recipe);
-        servings = findViewById(R.id.et_amount);
+        servings = findViewById(R.id.et_addServings);
 
         Bundle b = getIntent().getExtras();
         int i = b.getInt(EXTRA, 0);

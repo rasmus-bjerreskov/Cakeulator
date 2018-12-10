@@ -41,7 +41,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_amount" />
+        app:layout_constraintTop_toBottomOf="@+id/et_addServings" />
 
     <TextView
         android:id="@+id/tv_recipeName"
@@ -63,13 +63,13 @@
         android:gravity="center"
         android:text="@string/text_makes"
         android:textSize="20sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/et_amount"
-        app:layout_constraintEnd_toStartOf="@+id/et_amount"
+        app:layout_constraintBaseline_toBaselineOf="@+id/et_addServings"
+        app:layout_constraintEnd_toStartOf="@+id/et_addServings"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/et_amount"
+        android:id="@+id/et_addServings"
         android:layout_width="60dp"
         android:layout_height="40dp"
         android:layout_marginTop="40dp"
@@ -89,9 +89,9 @@
         android:gravity="center"
         android:text="@string/text_servings"
         android:textSize="20sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/et_amount"
+        app:layout_constraintBaseline_toBaselineOf="@+id/et_addServings"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/et_amount" />
+        app:layout_constraintStart_toEndOf="@+id/et_addServings" />
 
 </android.support.constraint.ConstraintLayout>
