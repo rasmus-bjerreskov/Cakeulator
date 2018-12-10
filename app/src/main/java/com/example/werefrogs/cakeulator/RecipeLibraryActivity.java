@@ -2,7 +2,6 @@ package com.example.werefrogs.cakeulator;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -83,7 +82,7 @@ public class RecipeLibraryActivity extends AppCompatActivity {
                         dialog.dismiss();
                     }
                 });
-                //https://stackoverflow.com/questions/38808006/delete-item-from-listview-with-dialog-android, user israelbenh
+
                 dialogBuilder.show();
                 return true;
             }
@@ -103,7 +102,6 @@ public class RecipeLibraryActivity extends AppCompatActivity {
             @Override
             public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
             }
-
 
             @Override
             public void afterTextChanged(Editable arg0) {
