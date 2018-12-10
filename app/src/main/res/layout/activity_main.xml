@@ -19,7 +19,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/cakeulator_logo" />
+        app:srcCompat="@drawable/small_logo_transparent" />
 
     <EditText
         android:id="@+id/et_addName"
@@ -88,7 +88,7 @@
         android:layout_marginTop="56dp"
         android:ems="10"
         android:hint="Amount"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_addName" />
 
