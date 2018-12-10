@@ -15,12 +15,11 @@ public class RecipePageActivity extends AppCompatActivity {
     private TextView recipeName, recipeView;
     private EditText servings;
     private Recipe recipeToPrint;
-    private Recipe recipeToFavourite;
-    CheckBox checkBox;
-    public String favouriteName;
-    public int favouriteServings;
 
-
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +28,6 @@ public class RecipePageActivity extends AppCompatActivity {
         recipeName = findViewById(R.id.tv_recipeName);
         recipeView = findViewById(R.id.tv_recipe);
         servings = findViewById(R.id.et_amount);
-        checkBox = (CheckBox) findViewById(R.id.checkBox);
 
         Bundle b = getIntent().getExtras();
         int i = b.getInt(EXTRA, 0);
@@ -53,60 +51,6 @@ public class RecipePageActivity extends AppCompatActivity {
         });
         updateUI();
     }
-
-    /**
-     *
-     * Method returns iCheckBox=false if the favourites button is unchecked
-     * Method returns iCheckBox=true if the favourites button is checked
-     * @return
-     */
-    public void checkFavourites() {
-
-        if (checkBox.isChecked()) {
-             recipeToPrint.setFavourite(true);
-        }
-        else {
-            recipeToPrint.setFavourite(false);
-        }
-    }
-
-    /**
-     * Adds the recipe to the Favourites ArrayList when the CheckBox is ticked
-     * @param view
-     */
-
-    public void onClickFavourites(View view) {
-        checkFavourites();
-        setFavouriteName();
-        setFavouriteServings();
-        if (recipeToPrint.getFavourite(true)) {
-            Recipe recipeFavourite = new Recipe();
-
-            recipeFavourite.setName(favouriteName);
-            recipeFavourite.setServings(favouriteServings);
-            recipeFavourite.addIngredient(new Ingredient(1, "Slice", "rye bread"));
-            FavouriteList.getInstance().addFavouriteRecipe(recipeFavourite);
-        }else{
-            //FavouriteList.getInstance().removeFavouriteRecipe(); -- Remove function. Indexing of Favourite recipes needed.
-        }
-    }
-
-    /*
-    public ArrayList FavouriteIngredients;
-    public void setFavouriteIngredients() {
-        this.FavouriteIngredients = recipeToPrint.getIngredients();
-    }
-    */
-
-    //favourite setters
-    public void setFavouriteName() {
-        this.favouriteName = recipeToPrint.getName();
-    }
-    public void setFavouriteServings() {
-        this.favouriteServings = recipeToPrint.getServings();
-    }
-
-    //favourite setters end
 
     public void updateUI() {
         String recipePrint = "";

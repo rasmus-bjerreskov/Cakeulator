@@ -14,8 +14,10 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
@@ -74,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
                 });
                 dialogBuilder.show(); //https://stackoverflow.com/questions/38808006/delete-item-from-listview-with-dialog-android, user israelbenh
                 return true;
-                //Made using tutorial from: https://www.android-examples.com/remove-selected-listview-item-in-android-on-long-click-listener/
             }
 
         });

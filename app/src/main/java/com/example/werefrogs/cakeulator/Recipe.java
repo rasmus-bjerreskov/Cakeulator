@@ -5,14 +5,12 @@ import java.util.ArrayList;
 public class Recipe {
     private String name;
     private int servings;
-    private boolean isFavourite;
     private ArrayList<Ingredient> ingredients;
 
     public Recipe() {
         this.name = "Unnamed recipe";
         this.servings = getServings();
         this.ingredients = new ArrayList<Ingredient>();
-        this.isFavourite = false;
     }
 
     /**
@@ -37,10 +35,6 @@ public class Recipe {
         this.servings = servings;
     }
 
-    public void setFavourite(boolean isFavourite) {
-        this.isFavourite = isFavourite;
-    }
-
     /**
      * returns the arrayList object part of the recipe
      *
@@ -55,13 +49,6 @@ public class Recipe {
      */
     public String getName() {
         return this.name;
-    }
-    /**
-     * @return
-     */
-
-    public boolean getFavourite(boolean isFavourite) {
-        return isFavourite;
     }
 
     /**

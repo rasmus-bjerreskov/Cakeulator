@@ -28,7 +28,7 @@ public class RecipeLibraryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_library);
 
-        searchLibrary = (EditText) findViewById(R.id.et_search);
+        searchLibrary = findViewById(R.id.et_search);
         ListView lv = findViewById(R.id.lv_Recipes);
 
         adapter = new ArrayAdapter<Recipe>
@@ -85,6 +85,7 @@ public class RecipeLibraryActivity extends AppCompatActivity {
             }
 
         });
+
         searchLibrary.addTextChangedListener(new TextWatcher() {
 
             //The program listens and responds to changes in the EditText field
