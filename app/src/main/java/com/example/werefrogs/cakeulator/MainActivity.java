@@ -1,12 +1,15 @@
 package com.example.werefrogs.cakeulator;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -15,9 +18,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import java.lang.reflect.Array;
 import java.lang.reflect.Type;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -46,9 +47,41 @@ public class MainActivity extends AppCompatActivity {
 
         newRecipe = new Recipe();
         adapterIngredient = new ArrayAdapter<Ingredient>(this, android.R.layout.simple_list_item_1, arrayIngredient);
+        lvIngredients.setAdapter(adapterIngredient);
+        lvIngredients.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            /**
+             *
+             * @param parent
+             * @param view
+             * @param position
+             * @param id
+             * @return
+             */
 
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(MainActivity.this);
+                dialogBuilder.setMessage("Delete?");
+                dialogBuilder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        arrayIngredient.remove(position);
+                        adapterIngredient.notifyDataSetChanged();
+                        Toast.makeText(MainActivity.this, "Item Deleted", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                dialogBuilder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                dialogBuilder.show(); //https://stackoverflow.com/questions/38808006/delete-item-from-listview-with-dialog-android, user israelbenh
+                return true;
+            }
+
+        });
         recipePref = getSharedPreferences(PREF, MODE_PRIVATE);
         loadRecipes();
+
     }
 
     public void buttonPressed_addIngredient(View v) { //Adds ingredient to the List View
@@ -102,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
         newIngredient = null;
     }
 
-    public void recipeReset() { //Resets the recipe input fields and the list to blank
+    public void recipeReset() { //Resets the recipe name input field and the list to blank
         newName.setText(null);
         newServing.setText(null);
         newRecipe = null;
@@ -123,6 +156,7 @@ public class MainActivity extends AppCompatActivity {
         prefsEditor.putString(SAVE_RECIPES, jsonString);
         prefsEditor.commit();
     }
+
     public void loadRecipes() {
         //https://medium.com/@evancheese1/shared-preferences-saving-arraylists-and-more-with-json-and-gson-java-5d899c8b0235
         Type listType = new TypeToken<ArrayList<Recipe>>() {
@@ -135,11 +169,24 @@ public class MainActivity extends AppCompatActivity {
         Gson gson = new Gson();
         String json = recipePref.getString(SAVE_RECIPES, "[]");
         RecipeList.getInstance().setRecipes((ArrayList<Recipe>) gson.fromJson(json, listType));
-    }
+}
 
     public void onStop() {
         super.onStop();
         saveRecipes();
     }
+    public void onPause() {
+        super.onPause();
+        saveRecipes();
+    }
+    public void onRestart() {
+        super.onRestart();
+        saveRecipes();
+    }
+    public void onResume() {
+        super.onResume();
+        saveRecipes();
+    }
 }
+
 

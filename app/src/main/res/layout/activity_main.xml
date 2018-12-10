@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -12,14 +18,14 @@
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.467"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/cakeulator_logo" />
+        app:srcCompat="@drawable/small_logo_transparent" />
 
     <EditText
         android:id="@+id/et_addName"
@@ -31,8 +37,8 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="Recipe name..."
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,26 +51,25 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
         android:onClick="buttonPressed_addToLibrary"
         android:text="@string/bt_addRecipe"
         app:layout_constraintEnd_toStartOf="@+id/button3"
-        app:layout_constraintHorizontal_bias="0.115"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_amount" />
+        app:layout_constraintTop_toBottomOf="@+id/lv_ingredients" />
 
     <Button
         android:id="@+id/button3"
         android:layout_width="146dp"
         android:layout_height="46dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:onClick="buttonPressed_toLibrary"
         android:text="@string/bt_myLibrary"
+        app:layout_constraintBaseline_toBaselineOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_amount" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/button2" />
 
     <Button
         android:id="@+id/button4"
@@ -88,8 +93,8 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="56dp"
         android:ems="10"
-        android:inputType="number"
         android:hint="Amount"
+        android:inputType="numberDecimal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_addName" />
 
@@ -99,8 +104,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="Unit"
+        android:inputType="textPersonName"
         app:layout_constraintStart_toEndOf="@+id/et_addAmount"
         app:layout_constraintTop_toBottomOf="@+id/et_addName" />
 
@@ -112,8 +117,8 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="Ingredient"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toStartOf="@+id/button4"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/et_addUnit"
@@ -137,14 +142,14 @@
         android:id="@+id/et_amount"
         android:layout_width="62dp"
         android:layout_height="40dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="112dp"
         android:ems="10"
         android:hint="1"
         android:inputType="number"
         app:layout_constraintEnd_toStartOf="@+id/tv_servings"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/tv_makes"
-        app:layout_constraintTop_toBottomOf="@+id/lv_ingredients" />
+        app:layout_constraintTop_toBottomOf="@+id/et_addName" />
 
     <TextView
         android:id="@+id/tv_servings"
@@ -162,17 +167,20 @@
 
     <ListView
         android:id="@+id/lv_ingredients"
-        android:layout_width="379dp"
-        android:layout_height="219dp"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_above="@id/et_amount"
+        android:layout_below="@id/button2"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:scrollbars="vertical"
         android:divider="@null"
+        android:scrollbars="vertical"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button4" />/>
+        app:layout_constraintTop_toBottomOf="@+id/et_amount" />
 
 </android.support.constraint.ConstraintLayout>
+</ScrollView>

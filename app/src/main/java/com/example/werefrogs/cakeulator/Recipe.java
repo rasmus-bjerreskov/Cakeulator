@@ -5,31 +5,11 @@ import java.util.ArrayList;
 public class Recipe {
     private String name;
     private int servings;
-    private boolean isFavourite;
     private ArrayList<Ingredient> ingredients;
 
     public Recipe() {
         this.name = "Unnamed recipe";
         this.servings = getServings();
-        this.ingredients = new ArrayList<Ingredient>();
-        this.isFavourite = false;
-    }
-
-    /**
-     * creates empty recipe with only a name
-     *
-     * @param name
-     */
-    public Recipe(String name) {
-        this.name = name;
-        this.servings = getServings();
-        this.ingredients = new ArrayList<Ingredient>();
-        this.isFavourite = false;
-    }
-
-    public Recipe(String name, int servings) {
-        this.name = name;
-        this.servings = servings;
         this.ingredients = new ArrayList<Ingredient>();
     }
 
@@ -69,16 +49,6 @@ public class Recipe {
      */
     public String getName() {
         return this.name;
-    }
-    /**
-     * @return
-     */
-    public void setFavourite(boolean isFavourite) {
-        this.isFavourite = isFavourite;
-    }
-
-    public boolean getFavourite(boolean isFavourite) {
-        return isFavourite;
     }
 
     /**
