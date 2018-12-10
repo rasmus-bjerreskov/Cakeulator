@@ -12,4 +12,8 @@
     <string name="string_delete">Yes</string>
     <string name="string_no">No</string>
     <string name="string_deleteQuery">Delete?</string>
+    <string name="text_amount">Amount</string>
+    <string name="text_unit">Unit</string>
+    <string name="text_Ingredient">Ingredient</string>
+    <string name="text_recipe_name">Recipe name...</string>
 </resources>
