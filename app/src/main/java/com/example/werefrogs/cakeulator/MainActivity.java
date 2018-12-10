@@ -61,17 +61,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
                 AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(MainActivity.this);
-                dialogBuilder.setMessage("Delete?");
-                dialogBuilder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                dialogBuilder.setMessage("Delete?"); //Builds the pop up dialog with the message "Delete?"
+                dialogBuilder.setPositiveButton("YES", new DialogInterface.OnClickListener() { //What the "YES" button does
                     public void onClick(DialogInterface dialog, int which) {
-                        arrayIngredient.remove(position);
+                        arrayIngredient.remove(position); //removes the selected item from the list
                         adapterIngredient.notifyDataSetChanged();
                         Toast.makeText(MainActivity.this, "Item Deleted", Toast.LENGTH_SHORT).show();
                     }
                 });
-                dialogBuilder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                dialogBuilder.setNegativeButton("NO", new DialogInterface.OnClickListener() { //What the "NO" button does
                     public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
+                        dialog.dismiss(); //dismisses the dialog box and returns to the previous activity
                     }
                 });
                 dialogBuilder.show(); //https://stackoverflow.com/questions/38808006/delete-item-from-listview-with-dialog-android, user israelbenh
@@ -148,18 +148,18 @@ public class MainActivity extends AppCompatActivity {
         lvIngredients.setAdapter(adapterIngredient);
     }
 
-    public void saveRecipes() {
-        SharedPreferences.Editor prefsEditor = recipePref.edit();
+    public void saveRecipes() { //Saves the created recipes
+        SharedPreferences.Editor prefsEditor = recipePref.edit(); //creates a new SharedPreferences
         Gson gson = new Gson();
-        String jsonString = gson.toJson(RecipeList.getInstance().getRecipeList());
+        String jsonString = gson.toJson(RecipeList.getInstance().getRecipeList()); //this will be the String that SharedPreferences can save
         Log.d("saved", jsonString);
         prefsEditor.putString(SAVE_RECIPES, jsonString);
         prefsEditor.commit();
     }
 
-    public void loadRecipes() {
+    public void loadRecipes() { //loads recipes from SharedPreferences
         //https://medium.com/@evancheese1/shared-preferences-saving-arraylists-and-more-with-json-and-gson-java-5d899c8b0235
-        Type listType = new TypeToken<ArrayList<Recipe>>() {
+        Type listType = new TypeToken<ArrayList<Recipe>>() { //Creates a token for Json to interpret
         }.getType();
 
         /*
@@ -171,19 +171,19 @@ public class MainActivity extends AppCompatActivity {
         RecipeList.getInstance().setRecipes((ArrayList<Recipe>) gson.fromJson(json, listType));
 }
 
-    public void onStop() {
+    public void onStop() { //Saves when onStop() is called
         super.onStop();
         saveRecipes();
     }
-    public void onPause() {
+    public void onPause() { //Saves when onPause() is called
         super.onPause();
         saveRecipes();
     }
-    public void onRestart() {
+    public void onRestart() { //Saves when onRestart() is called
         super.onRestart();
         saveRecipes();
     }
-    public void onResume() {
+    public void onResume() { //Saves when onResume() is called
         super.onResume();
         saveRecipes();
     }

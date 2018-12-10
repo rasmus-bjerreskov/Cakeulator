@@ -52,7 +52,7 @@ public class RecipeLibraryActivity extends AppCompatActivity {
                 Log.d(TAG, "onItemClick(" + i + ")");
 
 
-                Recipe recipeClicked = (Recipe)adapterView.getItemAtPosition(i);
+                Recipe recipeClicked = (Recipe)adapterView.getItemAtPosition(i); //Creates an object that the adapter sees at position i
                 //int msg = view.getId();
                 Log.d(TAG, adapterView.getItemAtPosition(i).toString());
                 Intent nextActivity = new Intent(RecipeLibraryActivity.this, RecipePageActivity.class);
@@ -76,7 +76,7 @@ public class RecipeLibraryActivity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
 
-                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(RecipeLibraryActivity.this);
+                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(RecipeLibraryActivity.this); //See MainActivity
                 dialogBuilder.setMessage("Delete?");
                 dialogBuilder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
@@ -123,7 +123,7 @@ public class RecipeLibraryActivity extends AppCompatActivity {
         });
 
     }
-    public void saveRecipes() {
+    public void saveRecipes() { //See MainActivity
         SharedPreferences.Editor prefsEditor = recipePref.edit();
         Gson gson = new Gson();
         String jsonString = gson.toJson(RecipeList.getInstance().getRecipeList());
