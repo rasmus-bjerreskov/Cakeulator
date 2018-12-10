@@ -183,6 +183,10 @@ public class MainActivity extends AppCompatActivity {
         super.onRestart();
         saveRecipes();
     }
+    public void onResume() {
+        super.onResume();
+        saveRecipes();
+    }
 }
 
 
