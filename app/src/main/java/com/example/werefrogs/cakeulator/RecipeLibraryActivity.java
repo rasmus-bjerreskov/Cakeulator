@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 
+
 public class RecipeLibraryActivity extends AppCompatActivity {
     public static final String TAG = "Debug_key";
     public static final String EXTRA = "com.example.wereFrogs.Cakeulator";
@@ -76,6 +77,8 @@ public class RecipeLibraryActivity extends AppCompatActivity {
          // The search function was made using the tutorial and source code from http://aboutyusata.blogspot.com/2015/07/android-adding-search-functionality-to.html
         });
     }
+
+
 }
 
 
