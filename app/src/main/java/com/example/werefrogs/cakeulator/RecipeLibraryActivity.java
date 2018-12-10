@@ -2,6 +2,7 @@ package com.example.werefrogs.cakeulator;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,12 +16,17 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
 
 public class RecipeLibraryActivity extends AppCompatActivity {
     public static final String TAG = "Debug_key";
     public static final String EXTRA = "com.example.wereFrogs.Cakeulator";
     EditText searchLibrary;
     ArrayAdapter<Recipe> adapter;
+    private SharedPreferences recipePref;
+    private static final String PREF = "recipePref";
+    private static final String SAVE_RECIPES = "saveRecipe_key";
 
 
     @Override
@@ -30,7 +36,7 @@ public class RecipeLibraryActivity extends AppCompatActivity {
 
         searchLibrary = findViewById(R.id.et_search);
         ListView lv = findViewById(R.id.lv_Recipes);
-
+        recipePref = getSharedPreferences(PREF, MODE_PRIVATE);
         adapter = new ArrayAdapter<Recipe>
                 (this, android.R.layout.simple_list_item_1,
                         RecipeList.getInstance().getRecipeList());
@@ -76,6 +82,7 @@ public class RecipeLibraryActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         RecipeList.getInstance().getRecipeList().remove(position);
                         adapter.notifyDataSetChanged();
+                        saveRecipes();
 
 
                         Toast.makeText(RecipeLibraryActivity.this, "Item Deleted", Toast.LENGTH_SHORT).show();
@@ -115,6 +122,14 @@ public class RecipeLibraryActivity extends AppCompatActivity {
              */
         });
 
+    }
+    public void saveRecipes() {
+        SharedPreferences.Editor prefsEditor = recipePref.edit();
+        Gson gson = new Gson();
+        String jsonString = gson.toJson(RecipeList.getInstance().getRecipeList());
+        Log.d("saved", jsonString);
+        prefsEditor.putString(SAVE_RECIPES, jsonString);
+        prefsEditor.commit();
     }
 
 
