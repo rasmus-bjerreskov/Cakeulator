@@ -47,13 +47,13 @@
         android:id="@+id/tv_recipeName"
         android:layout_width="203dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="104dp"
-        android:layout_marginLeft="104dp"
         android:layout_marginTop="88dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
         android:gravity="center"
         android:text="TextView"
         android:textSize="30sp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/checkBox"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -100,10 +100,10 @@
         android:id="@+id/checkBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="14dp"
-        android:layout_marginRight="14dp"
-        android:text="@string/cb_favourites"
+        android:layout_marginEnd="4dp"
+        android:layout_marginRight="4dp"
         android:onClick="onClickFavourites"
+        android:text="@string/cb_favourites"
         app:layout_constraintBaseline_toBaselineOf="@+id/tv_recipeName"
         app:layout_constraintEnd_toEndOf="parent" />
 
