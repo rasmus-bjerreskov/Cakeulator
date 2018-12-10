@@ -44,8 +44,15 @@ public class RecipeLibraryActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Log.d(TAG, "onItemClick(" + i + ")");
+
+
+                Recipe recipeClicked = (Recipe)adapterView.getItemAtPosition(i);
+                //int msg = view.getId();
+                Log.d(TAG, adapterView.getItemAtPosition(i).toString());
                 Intent nextActivity = new Intent(RecipeLibraryActivity.this, RecipePageActivity.class);
-                nextActivity.putExtra(EXTRA, i);
+                //Recipe recipeClicked = RecipeList.getInstance().getRecipe(i);
+                int j = RecipeList.getInstance().getRecipeList().indexOf(recipeClicked);
+                nextActivity.putExtra(EXTRA, j);
                 startActivity(nextActivity);
             }
         });
