@@ -22,10 +22,7 @@ public class RecipeLibraryActivity extends AppCompatActivity {
     EditText searchLibrary;
     ArrayAdapter<Recipe> adapter;
 
-    /**
-     *
-     * @param savedInstanceState
-     */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,20 +30,17 @@ public class RecipeLibraryActivity extends AppCompatActivity {
 
         searchLibrary = findViewById(R.id.et_search);
         ListView lv = findViewById(R.id.lv_Recipes);
+
         adapter = new ArrayAdapter<Recipe>
                 (this, android.R.layout.simple_list_item_1,
                         RecipeList.getInstance().getRecipeList());
 
+        //Adapter for the Recipe Array list made
         lv.setAdapter(adapter);
+
+        //Clicking recipe in list leads to its individual page
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            /**
-             * Clicking recipe in list leads to its individual page
-             *
-             * @param adapterView
-             * @param view
-             * @param i
-             * @param l
-             */
+
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Log.d(TAG, "onItemClick(" + i + ")");
@@ -55,6 +49,8 @@ public class RecipeLibraryActivity extends AppCompatActivity {
                 startActivity(nextActivity);
             }
         });
+
+        //long click deletes recipe, opens dialog box to confirm
         lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             /**
              * @param parent
@@ -85,15 +81,14 @@ public class RecipeLibraryActivity extends AppCompatActivity {
 
                 dialogBuilder.show();
                 return true;
+                //Made using tutorial from: https://www.android-examples.com/remove-selected-listview-item-in-android-on-long-click-listener/
             }
 
         });
 
         searchLibrary.addTextChangedListener(new TextWatcher() {
 
-
             //The program listens and responds to changes in the EditText field
-
             @Override
             public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
                 RecipeLibraryActivity.this.adapter.getFilter().filter(cs);
@@ -107,9 +102,9 @@ public class RecipeLibraryActivity extends AppCompatActivity {
             public void afterTextChanged(Editable arg0) {
             }
             /* makes sure that the sequence of characters in the search field is the same as in the
-            recipe list view
+            recipe list view.
+            Tutorial and source code from http://aboutyusata.blogspot.com/2015/07/android-adding-search-functionality-to.html
              */
-            // Tutorial and source code from http://aboutyusata.blogspot.com/2015/07/android-adding-search-functionality-to.html
         });
 
     }
