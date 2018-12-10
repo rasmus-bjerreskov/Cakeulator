@@ -8,7 +8,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import static com.example.werefrogs.cakeulator.Ingredient.formatter;
-import java.util.ArrayList;
 
 import static com.example.werefrogs.cakeulator.RecipeLibraryActivity.EXTRA;
 
@@ -18,8 +17,8 @@ public class RecipePageActivity extends AppCompatActivity {
     private Recipe recipeToPrint;
     private Recipe recipeToFavourite;
     CheckBox checkBox;
-    public String FavouriteName;
-    public int FavouriteServings;
+    public String favouriteName;
+    public int favouriteServings;
 
 
     @Override
@@ -61,7 +60,7 @@ public class RecipePageActivity extends AppCompatActivity {
      * Method returns iCheckBox=true if the favourites button is checked
      * @return
      */
-    public void CheckFavourites() {
+    public void checkFavourites() {
 
         if (checkBox.isChecked()) {
              recipeToPrint.setFavourite(true);
@@ -77,14 +76,14 @@ public class RecipePageActivity extends AppCompatActivity {
      */
 
     public void onClickFavourites(View view) {
-        CheckFavourites();
+        checkFavourites();
         setFavouriteName();
         setFavouriteServings();
         if (recipeToPrint.getFavourite(true)) {
             Recipe recipeFavourite = new Recipe();
 
-            recipeFavourite.setName(FavouriteName);
-            recipeFavourite.setServings(FavouriteServings);
+            recipeFavourite.setName(favouriteName);
+            recipeFavourite.setServings(favouriteServings);
             recipeFavourite.addIngredient(new Ingredient(1, "Slice", "rye bread"));
             FavouriteList.getInstance().addFavouriteRecipe(recipeFavourite);
         }else{
@@ -101,10 +100,10 @@ public class RecipePageActivity extends AppCompatActivity {
 
     //favourite setters
     public void setFavouriteName() {
-        this.FavouriteName = recipeToPrint.getName();
+        this.favouriteName = recipeToPrint.getName();
     }
     public void setFavouriteServings() {
-        this.FavouriteServings = recipeToPrint.getServings();
+        this.favouriteServings = recipeToPrint.getServings();
     }
 
     //favourite setters end

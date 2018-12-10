@@ -22,6 +22,10 @@ class RecipeList {
         return this.recipes;
     }
 
+    public void setRecipes(ArrayList<Recipe> recipes) {
+        this.recipes = recipes;
+    }
+
     /**
      * add recipe array
      * @param r

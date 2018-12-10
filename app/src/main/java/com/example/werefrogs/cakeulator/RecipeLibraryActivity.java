@@ -1,6 +1,8 @@
 package com.example.werefrogs.cakeulator;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -11,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 
 public class RecipeLibraryActivity extends AppCompatActivity {
@@ -37,6 +40,7 @@ public class RecipeLibraryActivity extends AppCompatActivity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             /**
              * Clicking recipe in list leads to its individual page
+             *
              * @param adapterView
              * @param view
              * @param i
@@ -50,10 +54,45 @@ public class RecipeLibraryActivity extends AppCompatActivity {
                 startActivity(nextActivity);
             }
         });
+        lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            /**
+             * @param parent
+             * @param view
+             * @param position
+             * @param id
+             * @return
+             */
+
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+
+                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(RecipeLibraryActivity.this);
+                dialogBuilder.setMessage("Delete?");
+                dialogBuilder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        RecipeList.getInstance().getRecipeList().remove(position);
+                        adapter.notifyDataSetChanged();
+
+                        Toast.makeText(RecipeLibraryActivity.this, "Item Deleted", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                dialogBuilder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                //https://stackoverflow.com/questions/38808006/delete-item-from-listview-with-dialog-android, user israelbenh
+                dialogBuilder.show();
+                return true;
+                //Made using tutorial from: https://www.android-examples.com/remove-selected-listview-item-in-android-on-long-click-listener/
+            }
+
+        });
         searchLibrary.addTextChangedListener(new TextWatcher() {
 
             /**
              * The program listens and responds to changes in the EditText field
+             *
              * @param cs
              * @param arg1
              * @param arg2
@@ -74,8 +113,9 @@ public class RecipeLibraryActivity extends AppCompatActivity {
             /* makes sure that the sequence of characters in the search field is the same as in the
             recipe list view
              */
-         // The search function was made using the tutorial and source code from http://aboutyusata.blogspot.com/2015/07/android-adding-search-functionality-to.html
+            // Tutorial and source code from http://aboutyusata.blogspot.com/2015/07/android-adding-search-functionality-to.html
         });
+
     }
 
 
