@@ -24,7 +24,7 @@ public class RecipeLibraryActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe_library);
 
@@ -77,6 +77,7 @@ public class RecipeLibraryActivity extends AppCompatActivity {
                         RecipeList.getInstance().getRecipeList().remove(position);
                         adapter.notifyDataSetChanged();
 
+
                         Toast.makeText(RecipeLibraryActivity.this, "Item Deleted", Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -88,7 +89,7 @@ public class RecipeLibraryActivity extends AppCompatActivity {
 
                 dialogBuilder.show();
                 return true;
-                //Made using tutorial from: https://www.android-examples.com/remove-selected-listview-item-in-android-on-long-click-listener/
+
             }
 
         });
@@ -115,6 +116,7 @@ public class RecipeLibraryActivity extends AppCompatActivity {
         });
 
     }
+
 
 
 }

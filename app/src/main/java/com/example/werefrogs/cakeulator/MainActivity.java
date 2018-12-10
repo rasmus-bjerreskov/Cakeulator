@@ -169,10 +169,18 @@ public class MainActivity extends AppCompatActivity {
         Gson gson = new Gson();
         String json = recipePref.getString(SAVE_RECIPES, "[]");
         RecipeList.getInstance().setRecipes((ArrayList<Recipe>) gson.fromJson(json, listType));
-    }
+}
 
     public void onStop() {
         super.onStop();
+        saveRecipes();
+    }
+    public void onPause() {
+        super.onPause();
+        saveRecipes();
+    }
+    public void onRestart() {
+        super.onRestart();
         saveRecipes();
     }
 }
