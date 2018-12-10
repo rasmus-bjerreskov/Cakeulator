@@ -20,7 +20,10 @@ public class RecipePageActivity extends AppCompatActivity {
     public String favouriteName;
     public int favouriteServings;
 
-
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

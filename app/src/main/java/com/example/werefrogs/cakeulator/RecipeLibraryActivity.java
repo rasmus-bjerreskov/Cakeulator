@@ -22,7 +22,10 @@ public class RecipeLibraryActivity extends AppCompatActivity {
     EditText searchLibrary;
     ArrayAdapter<Recipe> adapter;
 
-
+    /**
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,7 +87,6 @@ public class RecipeLibraryActivity extends AppCompatActivity {
                 //https://stackoverflow.com/questions/38808006/delete-item-from-listview-with-dialog-android, user israelbenh
                 dialogBuilder.show();
                 return true;
-                //Made using tutorial from: https://www.android-examples.com/remove-selected-listview-item-in-android-on-long-click-listener/
             }
 
         });
@@ -103,10 +105,21 @@ public class RecipeLibraryActivity extends AppCompatActivity {
                 RecipeLibraryActivity.this.adapter.getFilter().filter(cs);
             }
 
+            /**
+             *
+             * @param arg0
+             * @param arg1
+             * @param arg2
+             * @param arg3
+             */
             @Override
             public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
             }
 
+            /**
+             *
+             * @param arg0
+             */
             @Override
             public void afterTextChanged(Editable arg0) {
             }
