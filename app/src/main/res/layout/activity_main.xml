@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -12,112 +13,106 @@
         android:layout_height="50dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.467"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/cakeulator_logo" />
+        app:srcCompat="@drawable/small_logo_transparent" />
 
     <EditText
         android:id="@+id/et_addName"
-        android:layout_width="303dp"
+        android:layout_width="0dp"
         android:layout_height="44dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="0dp"
         android:ems="10"
+        android:hint="@string/text_recipe_name"
         android:inputType="textPersonName"
-        android:hint="Recipe name..."
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/guideline2"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnSave"
         android:layout_width="151dp"
-        android:layout_height="wrap_content"
+        android:layout_height="46dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
         android:onClick="buttonPressed_addToLibrary"
         android:text="@string/bt_addRecipe"
-        app:layout_constraintEnd_toStartOf="@+id/button3"
-        app:layout_constraintHorizontal_bias="0.115"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_amount" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnToLibrary"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btnToLibrary"
         android:layout_width="146dp"
         android:layout_height="46dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:onClick="buttonPressed_toLibrary"
         android:text="@string/bt_myLibrary"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btnSave"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_amount" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnSave" />
 
     <Button
         android:id="@+id/button4"
         android:layout_width="52dp"
         android:layout_height="49dp"
-        android:layout_marginTop="56dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:gravity="center"
         android:onClick="buttonPressed_addIngredient"
         android:text="@string/bt_addLine"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_addName" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/et_addItem"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
         android:id="@+id/et_addAmount"
         android:layout_width="75dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Amount"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_addName" />
+        android:hint="@string/text_amount"
+        android:inputType="numberDecimal"
+        app:layout_constraintBaseline_toBaselineOf="@+id/et_addUnit"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/et_addUnit"
         android:layout_width="76dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="20dp"
         android:ems="10"
+        android:hint="@string/text_unit"
         android:inputType="textPersonName"
-        android:hint="Unit"
         app:layout_constraintStart_toEndOf="@+id/et_addAmount"
-        app:layout_constraintTop_toBottomOf="@+id/et_addName" />
+        app:layout_constraintTop_toBottomOf="@+id/et_addServings" />
 
     <EditText
-        android:id="@+id/et_addIngredient"
-        android:layout_width="153dp"
+        android:id="@+id/et_addItem"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
         android:ems="10"
+        android:hint="@string/text_Ingredient"
         android:inputType="textPersonName"
-        android:hint="Ingredient"
-        app:layout_constraintEnd_toStartOf="@+id/button4"
+        app:layout_constraintBaseline_toBaselineOf="@+id/et_addUnit"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/et_addUnit"
-        app:layout_constraintTop_toBottomOf="@+id/et_addName" />
+        app:layout_constraintStart_toEndOf="@+id/et_addUnit" />
 
     <TextView
         android:id="@+id/tv_makes"
@@ -128,23 +123,23 @@
         android:gravity="center"
         android:text="@string/text_makes"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/et_amount"
-        app:layout_constraintEnd_toStartOf="@+id/et_amount"
+        app:layout_constraintBottom_toBottomOf="@+id/et_addServings"
+        app:layout_constraintEnd_toStartOf="@+id/et_addServings"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/et_amount"
+        android:id="@+id/et_addServings"
         android:layout_width="62dp"
         android:layout_height="40dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         android:ems="10"
         android:hint="1"
         android:inputType="number"
         app:layout_constraintEnd_toStartOf="@+id/tv_servings"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/tv_makes"
-        app:layout_constraintTop_toBottomOf="@+id/lv_ingredients" />
+        app:layout_constraintTop_toBottomOf="@+id/et_addName" />
 
     <TextView
         android:id="@+id/tv_servings"
@@ -155,24 +150,37 @@
         android:gravity="center"
         android:text="@string/text_servings"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/et_amount"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/et_addServings"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/et_amount" />
+        app:layout_constraintStart_toEndOf="@+id/et_addServings" />
 
     <ListView
         android:id="@+id/lv_ingredients"
-        android:layout_width="379dp"
-        android:layout_height="219dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_above="@id/et_addServings"
+        android:layout_below="@id/btnSave"
+        android:layout_marginTop="8dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
+        android:layout_marginBottom="4dp"
         android:divider="@null"
-        android:dividerHeight="0dp"
+        android:scrollbars="vertical"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button4" />/>
+        app:layout_constraintTop_toBottomOf="@+id/et_addAmount"
+        app:layout_constraintBottom_toTopOf="@id/btnSave"
+        app:layout_constraintHeight_min="100dp"/>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.81" />
 
 </android.support.constraint.ConstraintLayout>

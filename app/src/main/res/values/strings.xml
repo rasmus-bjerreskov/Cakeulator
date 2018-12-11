@@ -6,4 +6,14 @@
     <string name="bt_addRecipe">Add to Recipes</string>
     <string name="bt_myLibrary">My Recipes</string>
     <string name="bt_addLine">+</string>
+    <string name="hint_enterNameRecipe">Enter the name of your recipe</string>
+    <string name="hint_amount">Amount</string>
+    <string name="text_favourites">Show favourites</string>
+    <string name="string_delete">Yes</string>
+    <string name="string_no">No</string>
+    <string name="string_deleteQuery">Delete?</string>
+    <string name="text_amount">Amount</string>
+    <string name="text_unit">Unit</string>
+    <string name="text_Ingredient">Ingredient</string>
+    <string name="text_recipe_name">Recipe name...</string>
 </resources>

@@ -9,24 +9,7 @@ public class Recipe {
 
     public Recipe() {
         this.name = "Unnamed recipe";
-        this.servings = 1;
-        this.ingredients = new ArrayList<Ingredient>();
-    }
-
-    /**
-     * creates empty recipe with only a name
-     *
-     * @param name
-     */
-    public Recipe(String name) {
-        this.name = name;
-        this.servings = 1;
-        this.ingredients = new ArrayList<Ingredient>();
-    }
-
-    public Recipe(String name, int servings) {
-        this.name = name;
-        this.servings = servings;
+        this.servings = getServings();
         this.ingredients = new ArrayList<Ingredient>();
     }
 
@@ -49,6 +32,14 @@ public class Recipe {
     }
 
     /**
+     * sets the amount of servings
+     * @param servings
+     */
+    public void setServings(int servings) {
+        this.servings = servings;
+    }
+
+    /**
      * returns the arrayList object part of the recipe
      *
      * @return
@@ -58,6 +49,7 @@ public class Recipe {
     }
 
     /**
+     * returns the name of the recipe
      * @return
      */
     public String getName() {
@@ -65,6 +57,7 @@ public class Recipe {
     }
 
     /**
+     * returns the amount of servings in the recipe
      * @return
      */
     public int getServings() {

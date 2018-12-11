@@ -8,37 +8,56 @@
     android:clickable="true"
     android:focusable="true"
     tools:context=".RecipePageActivity">
+    <!-- https://stackoverflow.com/a/47729775-->
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="74dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/small_logo_transparent" />
 
     <TextView
         android:id="@+id/tv_recipe"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:layout_marginBottom="16dp"
+        android:singleLine="false"
         android:text="TextView"
         android:textSize="20sp"
-        android:singleLine="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_amount" />
+        app:layout_constraintTop_toBottomOf="@+id/et_addServings" />
 
     <TextView
         android:id="@+id/tv_recipeName"
-        android:layout_width="wrap_content"
+        android:layout_width="203dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:gravity="center"
         android:text="TextView"
         android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <TextView
         android:id="@+id/tv_makes"
@@ -49,20 +68,20 @@
         android:gravity="center"
         android:text="@string/text_makes"
         android:textSize="20sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/et_amount"
-        app:layout_constraintEnd_toStartOf="@+id/et_amount"
+        app:layout_constraintBaseline_toBaselineOf="@+id/et_addServings"
+        app:layout_constraintEnd_toStartOf="@+id/et_addServings"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/et_amount"
+        android:id="@+id/et_addServings"
         android:layout_width="60dp"
         android:layout_height="40dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:inputType="number"
         app:layout_constraintEnd_toStartOf="@+id/tv_servings"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toEndOf="@+id/tv_makes"
         app:layout_constraintTop_toBottomOf="@+id/tv_recipeName" />
 
@@ -75,19 +94,9 @@
         android:gravity="center"
         android:text="@string/text_servings"
         android:textSize="20sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/et_amount"
+        app:layout_constraintBaseline_toBaselineOf="@+id/et_addServings"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/et_amount" />
-
-    <CheckBox
-        android:id="@+id/checkBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="14dp"
-        android:layout_marginRight="14dp"
-        android:text="@string/cb_favourites"
-        app:layout_constraintBaseline_toBaselineOf="@+id/tv_recipeName"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/et_addServings" />
 
 </android.support.constraint.ConstraintLayout>
