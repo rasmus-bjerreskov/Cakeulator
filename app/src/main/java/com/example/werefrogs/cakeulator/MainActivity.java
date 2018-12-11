@@ -23,16 +23,16 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText newName, newAmount, newUnit, newItem, newServing;
-    Recipe newRecipe;
-    Ingredient newIngredient;
-    ListView lvIngredients;
-    ArrayAdapter<Ingredient> adapterIngredient;
-    ArrayList<Ingredient> arrayIngredient = new ArrayList<Ingredient>();
+    private EditText newName, newAmount, newUnit, newItem, newServing;
+    private Recipe newRecipe;
+    private Ingredient newIngredient;
+    private ListView lvIngredients;
+    private ArrayAdapter<Ingredient> adapterIngredient;
+    private ArrayList<Ingredient> arrayIngredient = new ArrayList<Ingredient>();
 
     private SharedPreferences recipePref;
-    private static final String PREF = "recipePref";
-    private static final String SAVE_RECIPES = "saveRecipe_key";
+    public static final String PREF = "recipePref";
+    public static final String SAVE_RECIPES = "saveRecipe_key";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

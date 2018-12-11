@@ -22,12 +22,9 @@ import com.google.gson.Gson;
 public class RecipeLibraryActivity extends AppCompatActivity {
     public static final String TAG = "Debug_key";
     public static final String EXTRA = "com.example.wereFrogs.Cakeulator";
-    EditText searchLibrary;
-    ArrayAdapter<Recipe> adapter;
+    private EditText searchLibrary;
+    private ArrayAdapter<Recipe> adapter;
     private SharedPreferences recipePref;
-    private static final String PREF = "recipePref";
-    private static final String SAVE_RECIPES = "saveRecipe_key";
-
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -36,7 +33,7 @@ public class RecipeLibraryActivity extends AppCompatActivity {
 
         searchLibrary = findViewById(R.id.et_search);
         ListView lv = findViewById(R.id.lv_Recipes);
-        recipePref = getSharedPreferences(PREF, MODE_PRIVATE);
+        recipePref = getSharedPreferences(MainActivity.PREF, MODE_PRIVATE);
         adapter = new ArrayAdapter<Recipe>
                 (this, android.R.layout.simple_list_item_1,
                         RecipeList.getInstance().getRecipeList());
@@ -128,7 +125,7 @@ public class RecipeLibraryActivity extends AppCompatActivity {
         Gson gson = new Gson();
         String jsonString = gson.toJson(RecipeList.getInstance().getRecipeList());
         Log.d("saved", jsonString);
-        prefsEditor.putString(SAVE_RECIPES, jsonString);
+        prefsEditor.putString(MainActivity.SAVE_RECIPES, jsonString);
         prefsEditor.commit();
     }
 
