@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         newName = findViewById(R.id.et_addName);
         newAmount = findViewById(R.id.et_addAmount);
         newUnit = findViewById(R.id.et_addUnit);
@@ -49,6 +50,9 @@ public class MainActivity extends AppCompatActivity {
         adapterIngredient = new ArrayAdapter<Ingredient>(this, android.R.layout.simple_list_item_1, arrayIngredient);
         lvIngredients.setAdapter(adapterIngredient);
 
+        recipePref = getSharedPreferences(PREF, MODE_PRIVATE);
+
+        //Long click to delete
         lvIngredients.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             /**
              *
@@ -61,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+                //creates a dialog box to confirm deletion
                 AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(MainActivity.this);
                 dialogBuilder.setMessage("Delete?");
                 dialogBuilder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
@@ -79,9 +84,8 @@ public class MainActivity extends AppCompatActivity {
                 dialogBuilder.show(); //https://stackoverflow.com/questions/38808006/delete-item-from-listview-with-dialog-android, user israelbenh
                 return true;
             }
-
         });
-        recipePref = getSharedPreferences(PREF, MODE_PRIVATE);
+
         loadRecipes();
     }
 
