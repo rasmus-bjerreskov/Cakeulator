@@ -6,4 +6,173 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="74dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.467"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/cakeulator_logo" />
+
+    <EditText
+        android:id="@+id/et_addName"
+        android:layout_width="303dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Recipe name..."
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="151dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:onClick="buttonPressed_addToLibrary"
+        android:text="@string/bt_addRecipe"
+        app:layout_constraintEnd_toStartOf="@+id/button3"
+        app:layout_constraintHorizontal_bias="0.115"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_amount" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="146dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:onClick="buttonPressed_toLibrary"
+        android:text="@string/bt_myLibrary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_amount" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="52dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:gravity="center"
+        android:onClick="buttonPressed_addIngredient"
+        android:text="@string/bt_addLine"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_addName" />
+
+    <EditText
+        android:id="@+id/et_addAmount"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="56dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Amount"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_addName" />
+
+    <EditText
+        android:id="@+id/et_addUnit"
+        android:layout_width="76dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Unit"
+        app:layout_constraintStart_toEndOf="@+id/et_addAmount"
+        app:layout_constraintTop_toBottomOf="@+id/et_addName" />
+
+    <EditText
+        android:id="@+id/et_addIngredient"
+        android:layout_width="153dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Ingredient"
+        app:layout_constraintEnd_toStartOf="@+id/button4"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/et_addUnit"
+        app:layout_constraintTop_toBottomOf="@+id/et_addName" />
+
+    <TextView
+        android:id="@+id/tv_makes"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:gravity="center"
+        android:text="@string/text_makes"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/et_amount"
+        app:layout_constraintEnd_toStartOf="@+id/et_amount"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/et_amount"
+        android:layout_width="62dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="1"
+        android:inputType="number"
+        app:layout_constraintEnd_toStartOf="@+id/tv_servings"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tv_makes"
+        app:layout_constraintTop_toBottomOf="@+id/lv_ingredients" />
+
+    <TextView
+        android:id="@+id/tv_servings"
+        android:layout_width="84dp"
+        android:layout_height="38dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:gravity="center"
+        android:text="@string/text_servings"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/et_amount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/et_amount" />
+
+    <ListView
+        android:id="@+id/lv_ingredients"
+        android:layout_width="379dp"
+        android:layout_height="219dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button4" />/>
+
 </android.support.constraint.ConstraintLayout>
