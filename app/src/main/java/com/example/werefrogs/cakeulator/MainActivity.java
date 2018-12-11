@@ -91,16 +91,21 @@ public class MainActivity extends AppCompatActivity {
      * @param v
      */
     public void buttonPressed_addIngredient(View v) { //Adds ingredient to the List View
-        double amountToAdd = Double.parseDouble(newAmount.getText().toString());
-        String unitToAdd = newUnit.getText().toString();
-        String itemToAdd = newItem.getText().toString();
 
-        newIngredient = new Ingredient(amountToAdd, unitToAdd, itemToAdd);
-        newRecipe.addIngredient(newIngredient);
+        if (newAmount.getText().toString().equals("")) {
+            //does nothing
+        } else {
+            double amountToAdd = Double.parseDouble(newAmount.getText().toString());
+            String unitToAdd = newUnit.getText().toString();
+            String itemToAdd = newItem.getText().toString();
 
-        arrayIngredient.add(newIngredient);
-        lvIngredients.setAdapter(adapterIngredient);
-        ingredientReset();
+            newIngredient = new Ingredient(amountToAdd, unitToAdd, itemToAdd);
+            newRecipe.addIngredient(newIngredient);
+
+            arrayIngredient.add(newIngredient);
+            lvIngredients.setAdapter(adapterIngredient);
+            ingredientReset();
+        }
     }
 
     /**
