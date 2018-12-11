@@ -31,6 +31,10 @@ public class Recipe {
         this.name = name;
     }
 
+    /**
+     * sets the amount of servings
+     * @param servings
+     */
     public void setServings(int servings) {
         this.servings = servings;
     }
@@ -45,6 +49,7 @@ public class Recipe {
     }
 
     /**
+     * returns the name of the recipe
      * @return
      */
     public String getName() {
@@ -52,6 +57,7 @@ public class Recipe {
     }
 
     /**
+     * returns the amount of servings in the recipe
      * @return
      */
     public int getServings() {

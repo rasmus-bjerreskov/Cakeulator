@@ -21,11 +21,16 @@ public class Ingredient {
         this.item = item;
     }
 
+    /**
+     * returns the amount for the ingredient
+     * @return
+     */
     public double getAmount() {
         return amount;
     }
 
     /**
+     * returns the the unit of the ingredient
      * @return
      */
     public String getUnit() {
@@ -33,6 +38,7 @@ public class Ingredient {
     }
 
     /**
+     * sets the unit used
      * @param unit
      */
     public void setUnit(String unit) {
