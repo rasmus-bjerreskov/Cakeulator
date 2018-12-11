@@ -19,7 +19,11 @@
 
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity
+            android:name=".MainActivity"
+            android:windowSoftInputMode="adjustPan"/>
+        <!--https://code.luasoftware.com/tutorials/android/move-layout-when-keyboard-shown/
+         to prevent the layout messing up on small displays when keyboard is shown-->
         <activity android:name=".RecipeLibraryActivity"
             android:parentActivityName=".MainActivity"/>
         <activity android:name=".RecipePageActivity"
