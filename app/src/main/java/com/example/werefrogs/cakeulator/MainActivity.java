@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         newRecipe = new Recipe();
         adapterIngredient = new ArrayAdapter<Ingredient>(this, android.R.layout.simple_list_item_1, arrayIngredient);
         lvIngredients.setAdapter(adapterIngredient);
+
         lvIngredients.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             /**
              *
@@ -65,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
                 dialogBuilder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         arrayIngredient.remove(position);
+                        newRecipe.getIngredients().remove(position);
                         adapterIngredient.notifyDataSetChanged();
                         Toast.makeText(MainActivity.this, "Item Deleted", Toast.LENGTH_SHORT).show();
                     }
@@ -79,9 +81,9 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
+
         recipePref = getSharedPreferences(PREF, MODE_PRIVATE);
         loadRecipes();
-
     }
 
     public void buttonPressed_addIngredient(View v) { //Adds ingredient to the List View
@@ -99,32 +101,35 @@ public class MainActivity extends AppCompatActivity {
 
     //Adds given recipe to the library
     public void buttonPressed_addToLibrary(View v) {
-        toastSaved();
-
-        //Sets servings
-        int servingToAdd = 1;
-        if (!newServing.getText().toString().isEmpty()) {
-            //servings defaults to 1
-            servingToAdd = Integer.parseInt(newServing.getText().toString());
-        }
-        newRecipe.setServings(servingToAdd);
-
-        //Sets name and adds recipe to master (singleton) list
-        if (!newName.getText().toString().isEmpty()) { //does not set name to ""
-            String nameToAdd = newName.getText().toString();
-            Log.d("setName", nameToAdd);
-            newRecipe.setName(nameToAdd);
-        }
-
-        Log.d("getName", newRecipe.getName());
 
         //checks if ingredients have been added, then saves and resets the template
         if (newRecipe.getIngredients().isEmpty()) {
             toastNoIngredients();
+
         } else {
             RecipeList.getInstance().addRecipe(newRecipe);
+            toastSaved();
+
+            //Sets servings
+            int servingToAdd = 1;
+            if (!newServing.getText().toString().isEmpty()) {
+                //servings defaults to 1
+                servingToAdd = Integer.parseInt(newServing.getText().toString());
+            }
+            newRecipe.setServings(servingToAdd);
+
+            //Sets name and adds recipe to master (singleton) list
+            String nameToAdd = newName.getText().toString();
+            Log.d("namefield", Boolean.toString(newName.getText().toString().isEmpty()));
+            if (!(nameToAdd.isEmpty())) { //does not set name to ""
+                Log.d("setname", Boolean.toString(newName.getText().toString().isEmpty()));
+                Log.d("setName", nameToAdd);
+                newRecipe.setName(nameToAdd);
+            }
             recipeReset();
         }
+
+        Log.d("getName", newRecipe.getName());
     }
 
     public void buttonPressed_toLibrary(View v) { //Switches activities (Main to Recipe Library)
