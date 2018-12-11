@@ -84,6 +84,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * WHen the "+" button is clicked, the ingredient is added to the recipe
+     * @param v
+     */
     public void buttonPressed_addIngredient(View v) { //Adds ingredient to the List View
         double amountToAdd = Double.parseDouble(newAmount.getText().toString());
         String unitToAdd = newUnit.getText().toString();
@@ -97,7 +101,11 @@ public class MainActivity extends AppCompatActivity {
         ingredientReset();
     }
 
-    //Adds given recipe to the library
+    /**
+     * Adds given recipe to the library when "Add to Library" button is pressed
+     * Includes a toast to confirm addition to library
+     * @param v
+     */
     public void buttonPressed_addToLibrary(View v) {
         toastSaved();
 
@@ -127,19 +135,29 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Switches to the library when "My Library" button is pressed
+     * @param v
+     */
     public void buttonPressed_toLibrary(View v) { //Switches activities (Main to Recipe Library)
         Intent intent = new Intent(this, RecipeLibraryActivity.class);
         startActivity(intent);
     }
 
-    public void ingredientReset() { //Resets the ingredient input fields to blank
+    /**
+     * Resets the ingredient input fields to blank after the ingredient is added to the recipe
+     */
+    public void ingredientReset() {
         newAmount.setText(null);
         newUnit.setText(null);
         newItem.setText(null);
         newIngredient = null;
     }
 
-    public void recipeReset() { //Resets the recipe name input field and the list to blank
+    /**
+     * Resets the recipe name input field and the list to blank after the recipe has been added to the library
+     */
+    public void recipeReset() {
         newName.setText(null);
         newServing.setText(null);
         newRecipe = null;
@@ -152,6 +170,9 @@ public class MainActivity extends AppCompatActivity {
         lvIngredients.setAdapter(adapterIngredient);
     }
 
+    /**
+     * Saves recipe list by converting to Json string
+     */
     public void saveRecipes() { //Saves the created recipes
         SharedPreferences.Editor prefsEditor = recipePref.edit(); //creates a new SharedPreferences
         Gson gson = new Gson();
@@ -161,6 +182,9 @@ public class MainActivity extends AppCompatActivity {
         prefsEditor.commit();
     }
 
+    /**
+     * loads recipes from saved Json string
+     */
     public void loadRecipes() { //loads recipes from SharedPreferences
         //https://medium.com/@evancheese1/shared-preferences-saving-arraylists-and-more-with-json-and-gson-java-5d899c8b0235
         Type listType = new TypeToken<ArrayList<Recipe>>() { //Creates a token for Json to interpret
@@ -176,6 +200,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //toasts
+
+    /**
+     * creates a toast that says "Recipe added!"
+     */
     public void toastSaved() {
         //Makes a toast (short popup text) whenever the "Add to Library" button is pressed
         Context context = getApplicationContext();
@@ -185,21 +213,25 @@ public class MainActivity extends AppCompatActivity {
         toast.show();
     }
 
+    /**
+     * creates a toast that says "Add some ingredients first"
+     * Called when a user hasn't added any ingredients to a recipe
+     */
     public void toastNoIngredients() {
         Context context = getApplicationContext();
         CharSequence text = "Add some ingredients first";
         int duration = Toast.LENGTH_LONG;
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
-    }
+}
 
     public void onStop() {
         super.onStop();
         saveRecipes();
     }
 
-    public void onPause() {
-        super.onPause();
+    public void onResume() {
+        super.onResume();
         saveRecipes();
     }
 
@@ -207,8 +239,8 @@ public class MainActivity extends AppCompatActivity {
         super.onRestart();
         saveRecipes();
     }
-    public void onResume() {
-        super.onResume();
+    public void onPause() {
+        super.onPause();
         saveRecipes();
     }
 }

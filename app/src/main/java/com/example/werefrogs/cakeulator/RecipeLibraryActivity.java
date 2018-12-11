@@ -48,8 +48,7 @@ public class RecipeLibraryActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Log.d(TAG, "onItemClick(" + i + ")");
 
-
-                Recipe recipeClicked = (Recipe)adapterView.getItemAtPosition(i); //Creates an object that the adapter sees at position i
+                Recipe recipeClicked = (Recipe) adapterView.getItemAtPosition(i); //Creates an object that the adapter sees at position i
                 //int msg = view.getId();
                 Log.d(TAG, adapterView.getItemAtPosition(i).toString());
                 Intent nextActivity = new Intent(RecipeLibraryActivity.this, RecipePageActivity.class);
@@ -118,8 +117,11 @@ public class RecipeLibraryActivity extends AppCompatActivity {
             Tutorial and source code from http://aboutyusata.blogspot.com/2015/07/android-adding-search-functionality-to.html
              */
         });
-
     }
+
+    /**
+     * Saves list of recipes by converting to Json string
+     */
     public void saveRecipes() { //See MainActivity
         SharedPreferences.Editor prefsEditor = recipePref.edit();
         Gson gson = new Gson();
@@ -129,8 +131,20 @@ public class RecipeLibraryActivity extends AppCompatActivity {
         prefsEditor.commit();
     }
 
+    public void onStop() {
+        super.onStop();
+        saveRecipes();
+    }
+
+    public void onResume() {
+        super.onResume();
+        saveRecipes();
+    }
 
 
 }
+
+
+
 
 

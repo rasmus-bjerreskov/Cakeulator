@@ -15,10 +15,6 @@ public class RecipePageActivity extends AppCompatActivity {
     private EditText servings;
     private Recipe recipeToPrint;
 
-    /**
-     *
-     * @param savedInstanceState
-     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +48,9 @@ public class RecipePageActivity extends AppCompatActivity {
         updateUI();
     }
 
+    /**
+     * Updates the user interface
+     */
     public void updateUI() {
         String recipePrint = "";
         double multiplier;
