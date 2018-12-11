@@ -97,13 +97,9 @@ public class MainActivity extends AppCompatActivity {
         ingredientReset();
     }
 
-    public void buttonPressed_addToLibrary(View v) { //Adds given recipe to the library
-        //Makes a toast (short popup text) whenever the "Add to Library" button is pressed
-        Context context = getApplicationContext();
-        CharSequence text = "Recipe added!";
-        int duration = Toast.LENGTH_SHORT;
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
+    //Adds given recipe to the library
+    public void buttonPressed_addToLibrary(View v) {
+        toastSaved();
 
         //Sets servings
         int servingToAdd = 1;
@@ -114,13 +110,21 @@ public class MainActivity extends AppCompatActivity {
         newRecipe.setServings(servingToAdd);
 
         //Sets name and adds recipe to master (singleton) list
-        String nameToAdd = newName.getText().toString();
-        Log.d("setName", nameToAdd);
-        newRecipe.setName(nameToAdd);
-        Log.d("getName", newRecipe.getName());
-        RecipeList.getInstance().addRecipe(newRecipe);
+        if (!newName.getText().toString().isEmpty()) { //does not set name to ""
+            String nameToAdd = newName.getText().toString();
+            Log.d("setName", nameToAdd);
+            newRecipe.setName(nameToAdd);
+        }
 
-        recipeReset();
+        Log.d("getName", newRecipe.getName());
+
+        //checks if ingredients have been added, then saves and resets the template
+        if (newRecipe.getIngredients().isEmpty()) {
+            toastNoIngredients();
+        } else {
+            RecipeList.getInstance().addRecipe(newRecipe);
+            recipeReset();
+        }
     }
 
     public void buttonPressed_toLibrary(View v) { //Switches activities (Main to Recipe Library)
@@ -169,20 +173,41 @@ public class MainActivity extends AppCompatActivity {
         Gson gson = new Gson();
         String json = recipePref.getString(SAVE_RECIPES, "[]");
         RecipeList.getInstance().setRecipes((ArrayList<Recipe>) gson.fromJson(json, listType));
-}
+    }
+
+    //toasts
+    public void toastSaved() {
+        //Makes a toast (short popup text) whenever the "Add to Library" button is pressed
+        Context context = getApplicationContext();
+        CharSequence text = "Recipe added!";
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
+    }
+
+    public void toastNoIngredients() {
+        Context context = getApplicationContext();
+        CharSequence text = "Add some ingredients first";
+        int duration = Toast.LENGTH_LONG;
+        Toast toast = Toast.makeText(context, text, duration);
+        toast.show();
+    }
 
     public void onStop() {
         super.onStop();
         saveRecipes();
     }
+
     public void onPause() {
         super.onPause();
         saveRecipes();
     }
+
     public void onRestart() {
         super.onRestart();
         saveRecipes();
     }
+
     public void onResume() {
         super.onResume();
         saveRecipes();
