@@ -87,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * WHen the "+" button is clicked, the ingredient is added to the recipe
+     *
      * @param v
      */
     public void buttonPressed_addIngredient(View v) { //Adds ingredient to the List View
@@ -105,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Adds given recipe to the library when "Add to Library" button is pressed
      * Includes a toast to confirm addition to library
+     *
      * @param v
      */
     public void buttonPressed_addToLibrary(View v) {
@@ -141,6 +143,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Switches to the library when "My Library" button is pressed
+     *
      * @param v
      */
     public void buttonPressed_toLibrary(View v) { //Switches activities (Main to Recipe Library)
@@ -227,7 +230,7 @@ public class MainActivity extends AppCompatActivity {
         int duration = Toast.LENGTH_LONG;
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
-}
+    }
 
     public void onStop() {
         super.onStop();
@@ -238,16 +241,7 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
         saveRecipes();
     }
-
-    public void onRestart() {
-        super.onRestart();
-        saveRecipes();
-    }
-
-    public void onResume() {
-        super.onResume();
-        saveRecipes();
-    }
 }
+
 
 

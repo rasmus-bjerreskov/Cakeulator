@@ -49,10 +49,8 @@ public class RecipeLibraryActivity extends AppCompatActivity {
                 Log.d(TAG, "onItemClick(" + i + ")");
 
                 Recipe recipeClicked = (Recipe) adapterView.getItemAtPosition(i); //Creates an object that the adapter sees at position i
-                //int msg = view.getId();
                 Log.d(TAG, adapterView.getItemAtPosition(i).toString());
                 Intent nextActivity = new Intent(RecipeLibraryActivity.this, RecipePageActivity.class);
-                //Recipe recipeClicked = RecipeList.getInstance().getRecipe(i);
                 int j = RecipeList.getInstance().getRecipeList().indexOf(recipeClicked);
                 nextActivity.putExtra(EXTRA, j);
                 startActivity(nextActivity);
@@ -79,7 +77,6 @@ public class RecipeLibraryActivity extends AppCompatActivity {
                         RecipeList.getInstance().getRecipeList().remove(position);
                         adapter.notifyDataSetChanged();
                         saveRecipes();
-
 
                         Toast.makeText(RecipeLibraryActivity.this, "Item Deleted", Toast.LENGTH_SHORT).show();
                     }
